@@ -7,4 +7,5 @@ height: 50vh;
 
 background: url(${bg});
 	background-size: auto;
+
 `

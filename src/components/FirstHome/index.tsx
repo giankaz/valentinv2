@@ -1,4 +1,3 @@
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import dino from "../../assets/dinologo.png";
 import val1 from "../../assets/val1.png";
 import val2 from "../../assets/val2.png";
@@ -7,11 +6,8 @@ import val4 from "../../assets/val4.png";
 import val5 from "../../assets/val5.png";
 import {
 	StyledContainer,
-	StyledDiv,
-	StyledHeader,
-	StyledLoading,
-	StyledMain,
-	StyledTitle,
+	StyledDiv, StyledMain,
+	StyledTitle
 } from "./styles";
 
 import { Carousel } from "react-responsive-carousel";
@@ -19,8 +15,10 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 import { useState } from "react";
 
-import { AiFillPicture, AiFillInstagram } from "react-icons/ai";
 import { useEffect } from "react";
+
+import LoadingComponent from "../Global/Loading";
+import Header from "../Global/Header";
 
 declare global {
 	interface Window {
@@ -37,16 +35,15 @@ export default function FirstHome() {
 		val4,
 		val5,
 	]);
-	const [animation, setAnimation] = useState(false)
-	
+	const [animation, setAnimation] = useState(false);
 
 	useEffect(() => {
-		setTimeout(() => setAnimation(true), 1500)
+		setTimeout(() => setAnimation(true), 1500);
 		setTimeout(() => {
-			setIsLoading(false)
-			setAnimation(false)
-		}, 2000)
-	})
+			setIsLoading(false);
+			setAnimation(false);
+		}, 2000);
+	});
 
 	return (
 		<StyledDiv>
@@ -57,16 +54,7 @@ export default function FirstHome() {
 							Valentin <span>Cabral Rossi</span>{" "}
 							<img src={dino} alt="dino"></img>
 						</StyledTitle>
-						<StyledHeader>
-							<div>
-								<AiFillInstagram size={40} />
-								<p>Instagram</p>
-							</div>
-							<div>
-								<AiFillPicture size={40} />
-								<p>Galeria</p>
-							</div>
-						</StyledHeader>
+						<Header/>
 					</header>
 					<Carousel
 						infiniteLoop
@@ -76,27 +64,22 @@ export default function FirstHome() {
 						dynamicHeight
 						showStatus={false}
 						className="slider"
+						swipeScrollTolerance={150}
+						preventMovementUntilSwipeScrollTolerance
 					>
 						{flipperImages.map((src) => {
-							return (
-								<img
-									className="flipper_image"
-									src={src}
-									alt=""
-									
-								/>
-							);
+							return <img className="flipper_image" src={src} alt="" />;
 						})}
 					</Carousel>
 				</StyledContainer>
 			</StyledMain>
 
 			{isLoading && (
-				<StyledLoading animation={animation}>
-					
-					<img src={dino} alt="dino"></img>
+		
+				<LoadingComponent animation={animation}>
+						<img src={dino} alt="dino"></img>
 					<p>Carregando...</p>
-				</StyledLoading>
+				</LoadingComponent>
 			)}
 		</StyledDiv>
 	);
