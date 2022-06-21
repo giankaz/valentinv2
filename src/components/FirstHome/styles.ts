@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import bg from "../../assets/headerimg1.jpg";
 
+interface LoadingProps {
+	animation: boolean
+}
+
 export const StyledDiv = styled.div`
 	width: 100%;
 	height: 70vh;
@@ -26,7 +30,6 @@ export const StyledContainer = styled.div`
 
 	.slider {
 		li {
-			background: var(--green50) !important;
 		}
 	}
 
@@ -91,79 +94,95 @@ export const StyledTitle = styled.h1`
 		}
 	}
 
-	
-		@-webkit-keyframes shake-vertical {
-			0%,
-			100% {
-				-webkit-transform: translateY(0);
-				transform: translateY(0);
-			}
-			10%,
-			30%,
-			50%,
-			70% {
-				-webkit-transform: translateY(-8px);
-				transform: translateY(-8px);
-			}
-			20%,
-			40%,
-			60% {
-				-webkit-transform: translateY(8px);
-				transform: translateY(8px);
-			}
-			80% {
-				-webkit-transform: translateY(6.4px);
-				transform: translateY(6.4px);
-			}
-			90% {
-				-webkit-transform: translateY(-6.4px);
-				transform: translateY(-6.4px);
-			}
+	@-webkit-keyframes shake-vertical {
+		0%,
+		100% {
+			-webkit-transform: translateY(0);
+			transform: translateY(0);
 		}
-		@keyframes shake-vertical {
-			0%,
-			100% {
-				-webkit-transform: translateY(0);
-				transform: translateY(0);
-			}
-			10%,
-			30%,
-			50%,
-			70% {
-				-webkit-transform: translateY(-8px);
-				transform: translateY(-8px);
-			}
-			20%,
-			40%,
-			60% {
-				-webkit-transform: translateY(8px);
-				transform: translateY(8px);
-			}
-			80% {
-				-webkit-transform: translateY(6.4px);
-				transform: translateY(6.4px);
-			}
-			90% {
-				-webkit-transform: translateY(-6.4px);
-				transform: translateY(-6.4px);
-			}
+		10%,
+		30%,
+		50%,
+		70% {
+			-webkit-transform: translateY(-8px);
+			transform: translateY(-8px);
 		}
-	
+		20%,
+		40%,
+		60% {
+			-webkit-transform: translateY(8px);
+			transform: translateY(8px);
+		}
+		80% {
+			-webkit-transform: translateY(6.4px);
+			transform: translateY(6.4px);
+		}
+		90% {
+			-webkit-transform: translateY(-6.4px);
+			transform: translateY(-6.4px);
+		}
+	}
+	@keyframes shake-vertical {
+		0%,
+		100% {
+			-webkit-transform: translateY(0);
+			transform: translateY(0);
+		}
+		10%,
+		30%,
+		50%,
+		70% {
+			-webkit-transform: translateY(-8px);
+			transform: translateY(-8px);
+		}
+		20%,
+		40%,
+		60% {
+			-webkit-transform: translateY(8px);
+			transform: translateY(8px);
+		}
+		80% {
+			-webkit-transform: translateY(6.4px);
+			transform: translateY(6.4px);
+		}
+		90% {
+			-webkit-transform: translateY(-6.4px);
+			transform: translateY(-6.4px);
+		}
+	}
 `;
 
-export const StyledLoading = styled.div`
+export const StyledLoading = styled.div<LoadingProps>`
 	width: 100vw;
 	height: 100vh;
 	position: fixed;
 	top: 0;
 	left: 0;
 	z-index: 100;
-	background-image: linear-gradient(to bottom right, #ffffff, #82a91f,  #0a4c42);
-
+	background-image: linear-gradient(to bottom right, #ffffff, #82a91f, #0a4c42);
+	transition: 0.5s;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	animation: ${(props) =>props.animation && " puff-out-center 0.5s cubic-bezier(0.165, 0.840, 0.440, 1.000) both"};
+
+	@keyframes puff-out-center {
+		0% {
+			-webkit-transform: scale(1);
+			transform: scale(1);
+			-webkit-filter: blur(0px);
+			filter: blur(0px);
+			opacity: 1;
+		}
+		100% {
+			-webkit-transform: scale(2);
+			transform: scale(2);
+			-webkit-filter: blur(4px);
+			filter: blur(4px);
+			opacity: 0;
+		}
+	}
 
 	img {
 		max-width: 50%;

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledMain = styled.main`
 width: 100%;
 max-width: 800px;
-margin: 300px auto;
+margin: 400px auto;
 height: 400px;
 width: 100%;
 text-align: start;
@@ -14,12 +14,12 @@ box-sizing: border-box;
 padding: 10px;
 
 @media (max-width: 550px) {
-    margin: 200px auto;
+    margin: 250px auto;
     text-align: center;
 }
 
 @media (max-width: 400px) {
-    margin: 100px auto;
+    margin: 200px auto;
 }
 
     h2 {

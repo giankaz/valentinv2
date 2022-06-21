@@ -1,10 +1,10 @@
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import dino from "../../assets/dinologo.png";
-import val1 from "../../assets/val1.jpg";
-import val2 from "../../assets/val2.jpg";
-import val3 from "../../assets/val3.jpg";
-import val4 from "../../assets/val4.jpg";
-import val5 from "../../assets/val5.jpg";
+import val1 from "../../assets/val1.png";
+import val2 from "../../assets/val2.png";
+import val3 from "../../assets/val3.png";
+import val4 from "../../assets/val4.png";
+import val5 from "../../assets/val5.png";
 import {
 	StyledContainer,
 	StyledDiv,
@@ -20,6 +20,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useState } from "react";
 
 import { AiFillPicture, AiFillInstagram } from "react-icons/ai";
+import { useEffect } from "react";
 
 declare global {
 	interface Window {
@@ -36,6 +37,16 @@ export default function FirstHome() {
 		val4,
 		val5,
 	]);
+	const [animation, setAnimation] = useState(false)
+	
+
+	useEffect(() => {
+		setTimeout(() => setAnimation(true), 1500)
+		setTimeout(() => {
+			setIsLoading(false)
+			setAnimation(false)
+		}, 2000)
+	})
 
 	return (
 		<StyledDiv>
@@ -68,11 +79,11 @@ export default function FirstHome() {
 					>
 						{flipperImages.map((src) => {
 							return (
-								<LazyLoadImage
+								<img
 									className="flipper_image"
 									src={src}
 									alt=""
-									onLoad={() => setTimeout(() => setIsLoading(false), 1000)}
+									
 								/>
 							);
 						})}
@@ -81,7 +92,7 @@ export default function FirstHome() {
 			</StyledMain>
 
 			{isLoading && (
-				<StyledLoading>
+				<StyledLoading animation={animation}>
 					
 					<img src={dino} alt="dino"></img>
 					<p>Carregando...</p>
