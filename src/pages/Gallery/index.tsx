@@ -13,11 +13,11 @@ export default function Gallery() {
 	const [isLoading, setIsLoading] = useState(true);
 	const [animation, setAnimation] = useState(false);
 	const [folders, setFolders] = useState([
-		{description:"Na Barriga da Mamãe", path: 'barriga-da-mamae'},
-		{description:"Ensaio da Mamãe", path: 'ensaio-da-mamae'},
 		{description:"1º Mês", path: 'primeiro-mes'},
 		{description:"2º Mês", path: 'segundo-mes'},
-		{description:"3º Mês", path: 'terceiro-mes'}
+	/* 	{description:"3º Mês", path: 'terceiro-mes'}, */
+		{description:"Ensaio da Mamãe", path: 'ensaio-da-mamae'},
+		{description:"Na Barriga da Mamãe", path: 'barriga-da-mamae'}
 
 
 

@@ -16,6 +16,9 @@ import mommyDb from "../../../databases/mommyDb";
 import { StyledMain, StyledModal, StyledUl } from "./styles";
 import { useHistory } from "react-router-dom";
 import LoadingComponent from "../../../components/Global/Loading";
+import firstMonthDb from "../../../databases/firstMonthDb";
+import preBirthDb from "../../../databases/preBirthDb";
+import secondMonthDb from "../../../databases/secondMonthDb";
 
 type Database = {
 	src: string;
@@ -40,20 +43,39 @@ export default function GalleryGrid() {
 	useEffect(() => {
 		switch (id) {
 			case "barriga-da-mamae":
+				const preBirth = preBirthDb.map((item, i) => {
+					return {
+						src: `${process.env.PUBLIC_URL}/gallery/${id}/${item.src}`
+					};
+				});
+				setDatabase(preBirth);
 				break;
 			case "ensaio-da-mamae":
-				const newDb = mommyDb.map((item, i) => {
+				const mommy = mommyDb.map((item, i) => {
 					return {
 						src: `${process.env.PUBLIC_URL}/gallery/${id}/${item.src}`,
 						down: item.down ? true : false,
 					};
 				});
-				setDatabase(newDb);
-
+				setDatabase(mommy);
 				break;
 			case "primeiro-mes":
+				const first = firstMonthDb.map((item, i) => {
+					return {
+						src: `${process.env.PUBLIC_URL}/gallery/${id}/${item.src}`,
+						down: item.down ? true : false,
+					};
+				});
+				setDatabase(first);
 				break;
 			case "segundo-mes":
+				const second = secondMonthDb.map((item, i) => {
+					return {
+						src: `${process.env.PUBLIC_URL}/gallery/${id}/${item.src}`,
+						down: item.down ? true : false,
+					};
+				});
+				setDatabase(second);
 				break;
 			case "terceiro-mes":
 				break;
@@ -153,7 +175,7 @@ export default function GalleryGrid() {
 			{isLoading && (
 				<LoadingComponent animation={animation}>
 					<img src={dino} alt="dino"></img>
-					<p>Carregando{dots}</p>
+					<span className="loading_gallery">Carregando Fotos... Isso pode demorar um pouco</span>
 				</LoadingComponent>
 			)}
 

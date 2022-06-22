@@ -76,7 +76,7 @@ export const StyledHeader = styled.div`
 
 			p {
 				display: flex;
-				border: 2px solid var(--green100);
+				border: 2px solid var(--green50);
 				bottom: -40px;
 				min-width: 70px;
 

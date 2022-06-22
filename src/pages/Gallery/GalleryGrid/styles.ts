@@ -8,6 +8,11 @@ export const StyledMain = styled.main`
 	justify-content: center;
 	align-items: center;
 
+	.loading_gallery {
+		color: white;
+		font-size: 20px;
+	}
+
 	section {
 		display: flex;
 		position: fixed;
@@ -58,10 +63,17 @@ export const StyledUl = styled.ul`
 	gap: 10px;
 
 	img {
-		width: calc((100% - 30px) / 3);
+		width: calc((100% - 30px) / 4);
 		height: auto;
 		border: 2px solid transparent;
 		cursor: pointer;
+		object-fit: cover;
+
+
+		@media (max-width: 700px) {
+			width: calc((100% - 30px) / 3);
+
+		}
 	}
 
 	img:hover {
