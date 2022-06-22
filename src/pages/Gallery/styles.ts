@@ -4,7 +4,6 @@ export const StyledMain = styled.main`
 width: 100%;
 padding-bottom: 20px;
 
-background-image: linear-gradient(to bottom right, #ffffff, #82a91f,  #0a4c42, #0a4c42);
 
 .gallery_container {
     width: 100%;
@@ -24,8 +23,35 @@ header {
     justify-content: space-between;
     display: flex;
 
-    h1 {
-        cursor: pointer;
+
+    .gallery_return {
+            background-color: white;
+			border-radius: 100%;
+			width: 60px;
+			height: 60px;
+			color: var(--green50);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border: 2px solid  var(--green50);
+
+			svg {
+				padding-right: 4px;
+				padding-bottom: 3px;
+			}
+
+			cursor: pointer;
+
+			&:hover {
+				border: 2px solid black;
+				color: black;
+			}
+
+        @media (max-width: 600px) {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+        }
     }
 }
 

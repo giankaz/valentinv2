@@ -14,6 +14,8 @@ box-sizing: border-box;
 padding: 10px;
 
 
+
+
  @media (max-width: 720px) {
     margin: 300px auto;
     text-align: center;

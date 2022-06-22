@@ -12,6 +12,8 @@ export const StyledFooter = styled.footer`
 	align-items: flex-end;
 	justify-content: flex-end;
 
+	border-top: 2px solid white;
+
 	p {
 		background-color: white;
 		padding: 20px;

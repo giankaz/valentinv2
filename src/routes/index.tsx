@@ -1,4 +1,5 @@
 import {Switch, Route} from 'react-router-dom'
+import NotFound from '../pages/404'
 import Building from '../pages/Building'
 import Gallery from '../pages/Gallery'
 import GalleryGrid from '../pages/Gallery/GalleryGrid'
@@ -22,6 +23,9 @@ export default function Routes() {
     </Route>
     <Route exact path='/construindo'>
         <Building/>
+    </Route>
+    <Route  path='/:not'>
+        <NotFound/>
     </Route>
     </Switch>
   )

@@ -27,9 +27,19 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+html {
+  
+
+  background: linear-gradient(to bottom right, #ffffff, #82a91f,  #0a4c42, #0a4c42) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 body {
 	line-height: 1;
-    background-image: linear-gradient(to bottom, #ffffff,#ffffff, #82a91f,  #0a4c42, #0a4c42);
+
 }
 ol, ul {
 	list-style: none;

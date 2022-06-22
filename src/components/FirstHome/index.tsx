@@ -20,6 +20,7 @@ import LoadingComponent from "../Global/Loading";
 import Header from "../Global/Header";
 import Logo from "../Global/Logo";
 import CarrouselComponent from "../Carrousel";
+import dots from '../../assets/dots.gif'
 
 declare global {
 	interface Window {
@@ -29,7 +30,7 @@ declare global {
 
 export default function FirstHome() {
 	const [isLoading, setIsLoading] = useState(true);
-	const [dots, setDots] = useState('...')
+
 	const [flipperImages, setFlipperImages] = useState([
 		val1,
 		val2,
@@ -40,20 +41,6 @@ export default function FirstHome() {
 	const [animation, setAnimation] = useState(false);
 
 	useEffect(() => {
-		setInterval(() => {
-			switch (dots) {
-			case '...' :
-				setDots('.') 
-				break
-			case '..': 
-				setDots('...')
-				break
-			case ('.'):
-				setDots('..')
-				break
-		  }
-
-		}, 200)
 		setTimeout(() => setAnimation(true), 2000);
 		setTimeout(() => {
 			setIsLoading(false);
@@ -83,9 +70,11 @@ export default function FirstHome() {
 		
 				<LoadingComponent animation={animation}>
 						<img src={dino} alt="dino"></img>
-				    	<p>Carregando{dots}</p>
+				    	<p>Carregando <img src={dots} alt='' className="dots"/></p>
 				</LoadingComponent>
 			)}
+
+			<div className="opacity"></div>
 		</StyledDiv>
 	);
 }

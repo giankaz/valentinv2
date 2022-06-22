@@ -54,6 +54,10 @@ export const StyledMain = styled.main`
 		border: 2px solid var(--green50);
 		color: var(--green50);
 	}
+
+	.dots {
+		width: 100px;
+	}
 `;
 
 export const StyledUl = styled.ul`

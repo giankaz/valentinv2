@@ -8,12 +8,14 @@ export const StyledDiv = styled.div`
 	height: 70vh;
 	background: url(${bg});
 	background-size: auto;
+	border-bottom: 2px solid var(--green50);
+	
+
 `;
 
 export const StyledMain = styled.main`
 	padding-top: 20px;
 	padding-bottom: 20px;
-
 	height: 100vh;
 	width: 100%;
 	display: flex;

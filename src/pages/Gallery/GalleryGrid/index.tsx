@@ -12,6 +12,7 @@ import ScrollToTop from "react-scroll-to-top";
 import dino from "../../../assets/dinologo.png";
 
 import mommyDb from "../../../databases/mommyDb";
+import dots from '../../../assets/dots.gif'
 
 import { StyledMain, StyledModal, StyledUl } from "./styles";
 import { useHistory } from "react-router-dom";
@@ -32,7 +33,7 @@ export default function GalleryGrid() {
 	const [isLoading, setIsLoading] = useState(true);
 	const [currentImg, setCurrentImg] = useState("");
 
-	const [dots, setDots] = useState("...");
+
 
 	const history = useHistory();
 
@@ -79,22 +80,11 @@ export default function GalleryGrid() {
 				break;
 			case "terceiro-mes":
 				break;
+			default:
+				history.push('/404')
+				break
 		}
-		setInterval(() => {
-			switch (dots) {
-				case "...":
-					setDots(".");
-					break;
-				case "..":
-					setDots("...");
-					break;
-				case ".":
-					setDots("..");
-					break;
-			}
-		}, 150);
-		
-	
+
 	}, []);
 
 	useEffect(() => {
@@ -177,7 +167,8 @@ export default function GalleryGrid() {
 			{isLoading && (
 				<LoadingComponent animation={animation}>
 					<img src={dino} alt="dino"></img>
-					<span className="loading_gallery">Carregando Fotos... Isso pode demorar um pouco</span>
+					<span className="loading_gallery">Carregando Fotos Isso pode demorar um pouco </span>
+					<img src={dots} alt='' className="dots"/>
 				</LoadingComponent>
 			)}
 
