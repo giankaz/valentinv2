@@ -154,23 +154,25 @@ export default function GalleryGrid() {
 				})}
 			</StyledUl>
 
+			{currentImg === '' &&
 			<section>
-				<div onClick={handleBack} className="gallery_return">
-					<TbArrowBack size={35} />
-				</div>
+			<div onClick={handleBack} className="gallery_return">
+				<TbArrowBack size={35} />
+			</div>
 
-				<ScrollToTop
-					smooth
-					component={<TbArrowBigUpLines size={30} />}
-					style={{
-						width: "60px",
-						height: "60px",
-						borderRadius: "100%",
-						bottom: "20px",
-						right: "20px",
-					}}
-				/>
-			</section>
+			<ScrollToTop
+				smooth
+				component={<TbArrowBigUpLines size={30} />}
+				style={{
+					width: "60px",
+					height: "60px",
+					borderRadius: "100%",
+					bottom: "20px",
+					right: "20px",
+				}}
+			/>
+		</section>
+			}
 
 			{isLoading && (
 				<LoadingComponent animation={animation}>
