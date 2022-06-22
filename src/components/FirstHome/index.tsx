@@ -61,7 +61,7 @@ export default function FirstHome() {
 		}, 2500);
 
 		
-	});
+	}, []);
 
 	return (
 		<StyledDiv>

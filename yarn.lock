@@ -2991,6 +2991,11 @@ camelize@^1.0.0:
   resolved "https://registry.yarnpkg.com/camelize/-/camelize-1.0.0.tgz#164a5483e630fa4321e5af07020e531831b2609b"
   integrity sha512-W2lPwkBkMZwFlPCXhIlYgxu+7gC/NUlCtdK652DAJ1JdgV0sTrvuPFshNPrFa1TY2JOkLhgdeEBplB4ezEa+xg==
 
+can-use-dom@0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/can-use-dom/-/can-use-dom-0.1.0.tgz#22cc4a34a0abc43950f42c6411024a3f6366b45a"
+  integrity sha512-ceOhN1DL7Y4O6M0j9ICgmTYziV89WMd96SvSl0REd8PMgrY0B/WBOPoed5S1KUmJqXgUXh8gzSe6E3ae27upsQ==
+
 caniuse-api@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/caniuse-api/-/caniuse-api-3.0.0.tgz#5e4d90e2274961d46291997df599e3ed008ee4c0"
@@ -3537,6 +3542,11 @@ csstype@^3.0.2:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.0.tgz#4ddcac3718d787cf9df0d1b7d15033925c8f29f2"
   integrity sha512-uX1KG+x9h5hIJsaKR9xHUeUraxf8IODOwq9JLNPq6BwB04a/xgpq3rcx47l5BZu5zBPlgD342tdke3Hom/nJRA==
+
+cxs@6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/cxs/-/cxs-6.2.0.tgz#f11ca3bdaef154b93bdadca5df70f2cb3e37ca24"
+  integrity sha512-RGatb1BUwVMBzV8DRo9Kapc55bdGfAxMcukVk+ZzE3Ts8xaTve0GVz730kBDxjhEBU2LK+RPuAcjZb00Q3O24w==
 
 damerau-levenshtein@^1.0.7:
   version "1.0.8"
@@ -6615,6 +6625,11 @@ picomatch@^2.0.4, picomatch@^2.2.1, picomatch@^2.2.2, picomatch@^2.2.3, picomatc
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.1.tgz#3ba3833733646d9d3e4995946c1365a67fb07a42"
   integrity sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==
 
+picturefill@3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/picturefill/-/picturefill-3.0.3.tgz#a5c38eeb02d74def38e1790ff61e166166b4f224"
+  integrity sha512-JDdx+3i4fs2pkqwWZJgGEM2vFWsq+01YsQFT9CKPGuv2Q0xSdrQZoxi9XwyNARTgxiOdgoAwWQRluLRe/JQX2g==
+
 pify@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/pify/-/pify-2.3.0.tgz#ed141a6ac043a849ea588498e7dca8b15330e90c"
@@ -7431,6 +7446,15 @@ react-responsive-carousel@^3.2.23:
     prop-types "^15.5.8"
     react-easy-swipe "^0.0.21"
 
+react-responsive-picture@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/react-responsive-picture/-/react-responsive-picture-3.2.2.tgz#0095ef8fe0913f1acbe5dc124a74ae0905f76fca"
+  integrity sha512-vqaWBL9h7GWA/Asec+tbq3TG1LPN46i+PDeNymw2VydT3W6Z9QEjPbuJhuUmLz9q7JOaMdMwGMIRDfVDw/RTlw==
+  dependencies:
+    can-use-dom "0.1.0"
+    cxs "6.2.0"
+    picturefill "3.0.3"
+
 react-router-dom@5:
   version "5.3.3"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-5.3.3.tgz#8779fc28e6691d07afcaf98406d3812fe6f11199"
@@ -7514,6 +7538,11 @@ react-scripts@5.0.1:
     workbox-webpack-plugin "^6.4.1"
   optionalDependencies:
     fsevents "^2.3.2"
+
+react-scroll-to-top@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/react-scroll-to-top/-/react-scroll-to-top-1.0.8.tgz#b78731e77fb4463aa39907a3da9b153e2f0079a4"
+  integrity sha512-GXaRZnET2YUy+teAQTcd6qy3Dn8Xme4Qk+7AFhK/2DCwTuo0gu8+p6aARHyoG1TVcvzRE7QCCZYNiFZmy8HW7Q==
 
 react@^18.2.0:
   version "18.2.0"
