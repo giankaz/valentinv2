@@ -5,7 +5,7 @@ interface LoadingProps {
 }
 
 export const StyledLoading = styled.div<LoadingProps>`
-	width: 100vw;
+	width: 100%;
 	height: 100vh;
 	position: fixed;
 	top: 0;
@@ -45,6 +45,8 @@ export const StyledLoading = styled.div<LoadingProps>`
 	}
 
 	p {
+		width: 200px;
+	
 		font-size: 42px;
 		color: white;
 		font-family: "Salsa", cursive;

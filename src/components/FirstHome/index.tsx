@@ -1,4 +1,5 @@
 import dino from "../../assets/dinologo.png";
+
 import val1 from "../../assets/val1.png";
 import val2 from "../../assets/val2.png";
 import val3 from "../../assets/val3.png";
@@ -7,10 +8,8 @@ import val5 from "../../assets/val5.png";
 import {
 	StyledContainer,
 	StyledDiv, StyledMain,
-	StyledTitle
 } from "./styles";
 
-import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 import { useState } from "react";
@@ -19,6 +18,8 @@ import { useEffect } from "react";
 
 import LoadingComponent from "../Global/Loading";
 import Header from "../Global/Header";
+import Logo from "../Global/Logo";
+import CarrouselComponent from "../Carrousel";
 
 declare global {
 	interface Window {
@@ -28,6 +29,7 @@ declare global {
 
 export default function FirstHome() {
 	const [isLoading, setIsLoading] = useState(true);
+	const [dots, setDots] = useState('...')
 	const [flipperImages, setFlipperImages] = useState([
 		val1,
 		val2,
@@ -38,11 +40,27 @@ export default function FirstHome() {
 	const [animation, setAnimation] = useState(false);
 
 	useEffect(() => {
-		setTimeout(() => setAnimation(true), 1500);
+		setInterval(() => {
+			switch (dots) {
+			case '...' :
+				setDots('.') 
+				break
+			case '..': 
+				setDots('...')
+				break
+			case ('.'):
+				setDots('..')
+				break
+		  }
+
+		}, 200)
+		setTimeout(() => setAnimation(true), 2000);
 		setTimeout(() => {
 			setIsLoading(false);
 			setAnimation(false);
-		}, 2000);
+		}, 2500);
+
+		
 	});
 
 	return (
@@ -50,27 +68,14 @@ export default function FirstHome() {
 			<StyledMain>
 				<StyledContainer>
 					<header>
-						<StyledTitle>
-							Valentin <span>Cabral Rossi</span>{" "}
-							<img src={dino} alt="dino"></img>
-						</StyledTitle>
+						<Logo/>
 						<Header/>
 					</header>
-					<Carousel
-						infiniteLoop
-						interval={5000}
-						autoPlay
-						autoFocus
-						dynamicHeight
-						showStatus={false}
-						className="slider"
-						swipeScrollTolerance={150}
-						preventMovementUntilSwipeScrollTolerance
-					>
-						{flipperImages.map((src) => {
+					<CarrouselComponent autoPlay>
+					{flipperImages.map((src) => {
 							return <img className="flipper_image" src={src} alt="" />;
 						})}
-					</Carousel>
+					</CarrouselComponent>
 				</StyledContainer>
 			</StyledMain>
 
@@ -78,7 +83,7 @@ export default function FirstHome() {
 		
 				<LoadingComponent animation={animation}>
 						<img src={dino} alt="dino"></img>
-					<p>Carregando...</p>
+				    	<p>Carregando{dots}</p>
 				</LoadingComponent>
 			)}
 		</StyledDiv>

@@ -36,6 +36,11 @@ img {
 @media (max-width: 600px) {
      p {
         text-align: center;
+        font-size: 20px;
+     }
+
+     h2 {
+        font-size: 25px;
      }
     }
 `

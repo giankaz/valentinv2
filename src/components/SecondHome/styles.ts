@@ -4,7 +4,7 @@ export const StyledMain = styled.main`
 width: 100%;
 max-width: 800px;
 margin: 400px auto;
-height: 600px;
+height: 700px;
 width: 100%;
 text-align: start;
 display: flex;
@@ -14,14 +14,20 @@ box-sizing: border-box;
 padding: 10px;
 
 
+ @media (max-width: 720px) {
+    margin: 300px auto;
+    text-align: center;
+}
+
 @media (max-width: 550px) {
     margin: 250px auto;
     text-align: center;
 }
-
-@media (max-width: 400px) {
+@media (max-width: 450px) {
     margin: 150px auto;
-}
+    text-align: center;
+} 
+
 
     h2 {
         font-size: 40px;
@@ -55,6 +61,7 @@ padding: 10px;
         border-radius: 10px;
         position: relative;
         align-items: flex-start;
+        border: 2px solid black;
         
         
 
@@ -76,7 +83,7 @@ padding: 10px;
             position: absolute;
             bottom: 2px;
             left: 50%;
-            transform: translateX(-50%);
+            transform: translateX(-43%);
         }
     }
 

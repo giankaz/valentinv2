@@ -6,15 +6,10 @@ export const StyledHeader = styled.div`
 	flex-direction: column;
 	gap: 10px;
 
-
-
 	section {
 		display: flex;
 		gap: 10px;
-	
 	}
-
-	
 
 	div {
 		height: 45px;
@@ -37,12 +32,21 @@ export const StyledHeader = styled.div`
 			padding: 5px;
 			position: absolute;
 			bottom: -20px;
-            left: 50%;
-            transform: translateX(-50%);
+			left: 50%;
+			transform: translateX(-50%);
 			z-index: 10;
 			display: none;
 			border: 1px solid black;
 			border-radius: 6px;
+			width: max-content;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: 5px;
+
+			span {
+				font-size: 10px;
+			}
 		}
 
 		&:hover {
@@ -51,7 +55,7 @@ export const StyledHeader = styled.div`
 			color: black;
 
 			p {
-				display: block;
+				display: flex;
 			}
 		}
 	}
@@ -63,8 +67,7 @@ export const StyledHeader = styled.div`
 		gap: 20px;
 
 		section {
-		gap: 20px;	
-			
+			gap: 25px;
 		}
 
 		div {
@@ -72,14 +75,17 @@ export const StyledHeader = styled.div`
 			height: 60px;
 
 			p {
-				display: block;
-				border: none;
-				bottom: -30px;
-				
+				display: flex;
+				border: 2px solid var(--green100);
+				bottom: -40px;
+				min-width: 70px;
+
 				font-weight: bold;
+
+				span {
+					display: none;
+				}
 			}
 		}
-
 	}
-
 `;
