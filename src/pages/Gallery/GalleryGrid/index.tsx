@@ -14,6 +14,7 @@ import { defineSwipe, Swipeable } from "react-touch";
 
 import { initializeApp } from "firebase/app";
 import { getStorage, ref, getDownloadURL, listAll } from "firebase/storage";
+import { useLocation } from "react-router-dom";
 
 const firebaseConfig = {
 	apiKey: "AIzaSyBokxAhCwSbXRnehbdC6z7JlYNwBPXVVuU",
@@ -35,10 +36,11 @@ export default function GalleryGrid() {
 
 	const [keyDownAnimation, setKeyDownAnimation] = useState({
 		left: false,
-		right: false
-	})
+		right: false,
+	});
 
 	const history = useHistory();
+	const location = useLocation();
 
 	const swipe = defineSwipe({ swipeDistance: 50 });
 
@@ -50,52 +52,62 @@ export default function GalleryGrid() {
 		`gs://site-valentin.appspot.com/images/${id}`
 	);
 
-	
 	const changeCurrentImg = (type: string) => {
 		const currentIndex = dataBase.findIndex((item: any) => item === currentImg);
-      
 
 		if (currentIndex === 0 && type !== "next") {
-			setCurrentImg(dataBase[dataBase.length - 1]);
+			const newImg = dataBase[dataBase.length - 1];
+			const photoToken = newImg.split("token=")[1];
+			history.push(`/galeria/${id}/${photoToken}`);
+
 		} else if (currentIndex === dataBase.length - 1 && type === "next") {
-			setCurrentImg(dataBase[0]);
+
+			const newImg = dataBase[0];
+			const photoToken = newImg.split("token=")[1];
+			history.push(`/galeria/${id}/${photoToken}`);
+
 		} else {
+
 			if (type === "next") {
-				setCurrentImg(dataBase[currentIndex + 1]);
+				const newImg = dataBase[currentIndex + 1];
+				const photoToken = newImg.split("token=")[1];
+				history.push(`/galeria/${id}/${photoToken}`);
+
 			} else {
-				setCurrentImg(dataBase[currentIndex - 1]);
+				const newImg = dataBase[currentIndex - 1];
+				const photoToken = newImg.split("token=")[1];
+				history.push(`/galeria/${id}/${photoToken}`);
 			}
 		}
 	};
 
 	const onKeyDown = (e: any) => {
-		console.log(currentImg)
-		if (e.key === 'ArrowRight' || e.key === 'd') {
-			changeCurrentImg("next")
-			setKeyDownAnimation({left: false, right: true})
+		if (e.key === "ArrowRight" || e.key === "d") {
+			changeCurrentImg("next");
+			setKeyDownAnimation({ left: false, right: true });
 			setTimeout(() => {
-			setKeyDownAnimation({left: false, right: false})
-			}, 100)
+				setKeyDownAnimation({ left: false, right: false });
+			}, 100);
 		}
-		if (e.key === 'ArrowLeft' || e.key === 'a') {
-			changeCurrentImg("prev")
-			setKeyDownAnimation({right: false, left: true})
+		if (e.key === "ArrowLeft" || e.key === "a") {
+			changeCurrentImg("prev");
+			setKeyDownAnimation({ right: false, left: true });
 			setTimeout(() => {
-			setKeyDownAnimation({right: false, left: false})
-			}, 150)
+				setKeyDownAnimation({ right: false, left: false });
+			}, 400);
 		}
-		if (e.key === 'Escape') {
-			setCurrentImg('')
+		if (e.key === "Escape") {
+			setCurrentImg("");
+			history.push(`/galeria/${id}`)
 		}
+	};
 
-	}
 	useEffect(() => {
-		document.body.addEventListener('keydown', onKeyDown);
+		document.body.addEventListener("keydown", onKeyDown);
 		return () => {
-			document.body.removeEventListener('keydown', onKeyDown);
-		}
-	}, [currentImg])
-
+			document.body.removeEventListener("keydown", onKeyDown);
+		};
+	}, [currentImg]);
 
 	useEffect(() => {
 		const srcArray: any = [];
@@ -120,9 +132,27 @@ export default function GalleryGrid() {
 		setTimeout(() => {
 			setDatabase(srcArray);
 		}, 4000);
-
-	
 	}, []);
+
+	useEffect(() => {
+		const token = location.pathname.split("/")[3];
+
+		if (token) {
+			if (dataBase.length > 2) {
+				const newCurrentImg = dataBase.find(
+					(src: any) => src.split("token=")[1] === token
+				);
+
+				if (newCurrentImg) {
+					setCurrentImg(newCurrentImg);
+				} else {
+					history.push("/foto-nao-encontrada");
+				}
+			}
+		} else {
+			setCurrentImg("");
+		}
+	}, [location, dataBase]);
 
 	useEffect(() => {
 		if (animation) {
@@ -139,8 +169,10 @@ export default function GalleryGrid() {
 
 	const openImg = (src: string) => {
 		setCurrentImg(src);
-	};
+		const photoToken = src.split("token=")[1];
 
+		history.push(`/galeria/${id}/${photoToken}`);
+	};
 
 	return (
 		<StyledMain>
@@ -148,15 +180,14 @@ export default function GalleryGrid() {
 				{dataBase.map((item: string, i: number) => {
 					return (
 						<li key={i}>
-						<img
-							onLoad={() => {
-								setAnimation(true);
-							}}
-							
-							alt=""
-							src={item}
-							onClick={() => openImg(item)}
-						/>
+							<img
+								onLoad={() => {
+									setAnimation(true);
+								}}
+								alt=""
+								src={item}
+								onClick={() => openImg(item)}
+							/>
 						</li>
 					);
 				})}
@@ -204,7 +235,10 @@ export default function GalleryGrid() {
 						<div>
 							<LazyLoadImage alt="" src={currentImg} className="test" />
 							<button
-								onClick={() => setCurrentImg("")}
+								onClick={() => {
+									setCurrentImg("");
+									history.push(`/galeria/${id}`);
+								}}
 								className="gallery_close"
 							>
 								<IoMdClose size={20} />

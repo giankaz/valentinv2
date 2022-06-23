@@ -7,6 +7,8 @@ interface LogoProps {
 }
 
 export default function Logo({ title, onClick }: LogoProps) {
+
+	
 	return (
 		<StyledTitle onClick={onClick} >
 			{title ? (

@@ -59,8 +59,8 @@ export default function FirstHome() {
 						<Header/>
 					</header>
 					<CarrouselComponent autoPlay>
-					{flipperImages.map((src) => {
-							return <img className="flipper_image" src={src} alt="" />;
+					{flipperImages.map((src: any, i:number) => {
+							return <img className="flipper_image" src={src} alt=""key={i} />;
 						})}
 					</CarrouselComponent>
 				</StyledContainer>

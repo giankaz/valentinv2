@@ -23,9 +23,6 @@ export default function Gallery() {
 
 	const history = useHistory();
 
-	const handleClick = () => {
-		history.push("/");
-	};
 
 	useEffect(() => {
 		setTimeout(() => setAnimation(true), 1000);

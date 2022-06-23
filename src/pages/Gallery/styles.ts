@@ -66,6 +66,7 @@ ul {
 @media (max-width: 600px) {
     header {
         flex-direction: column;
+        margin-top: 20px;
         gap: 15px;
 
         h1 {

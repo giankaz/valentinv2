@@ -21,12 +21,18 @@ export default function Routes() {
     <Route  path='/galeria/:id'>
         <GalleryGrid/>
     </Route>
+    <Route path='/galeria/:id/:slug'>
+        <GalleryGrid/>
+    </Route>
     <Route exact path='/construindo'>
         <Building/>
     </Route>
-    <Route  path='/:not'>
+     <Route  path='/:not'>
         <NotFound/>
-    </Route>
+    </Route> 
+    <Route  path='/foto-nao-encontrada'>
+        <NotFound/>
+    </Route> 
     </Switch>
   )
 }
