@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledTitle = styled.h1`
-	font-size: 40px;
+	font-size: 30px;
 	font-family: "Salsa", cursive;
 
 	width: fit-content;
@@ -22,7 +22,7 @@ export const StyledTitle = styled.h1`
 		-1px 1px 0 var(--green50);
 
 	img {
-		width: 100px;
+		width: 80px;
 		height: auto;
 		-webkit-animation: shake-vertical 4s cubic-bezier(0.455, 0.03, 0.515, 0.955)
 			infinite both;
@@ -30,6 +30,7 @@ export const StyledTitle = styled.h1`
 			infinite both;
 	}
 	@media (max-width: 800px) {
+		
 		span {
 			display: none;
 		}
@@ -37,9 +38,11 @@ export const StyledTitle = styled.h1`
 
 	@media (max-width: 600px) {
 		& {
-			width: 100%;
+			font-size: 35px;
+			width: fit-content;
+			gap: 70px;
 			margin: 0 auto;
-			justify-content: space-around;
+			justify-content: space-between;
 		}
 	}
 

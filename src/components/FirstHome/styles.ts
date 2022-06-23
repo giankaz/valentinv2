@@ -25,7 +25,7 @@ export const StyledMain = styled.main`
 export const StyledContainer = styled.div`
 	width: 100%;
 	max-width: 800px;
-
+	
 	border-radius: 5px;
 
 	.slider {

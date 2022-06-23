@@ -3,60 +3,69 @@ import styled from "styled-components";
 export const StyledHeader = styled.div`
 	color: black;
 	display: flex;
-	flex-direction: column;
-	gap: 10px;
+	flex-direction: row;
+	gap: 20px;
 
 	section {
 		display: flex;
-		gap: 10px;
+		gap: 20px;
+		
 	}
 
 	div {
-		height: 45px;
-		width: 45px;
+	
 		color: var(--green50);
-		position: relative;
-		background-color: white;
-		border: 2px solid var(--green50);
-		border-radius: 10px;
+		cursor: pointer;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		gap: 5px;
-		cursor: pointer;
+
+		a {
+			border: 2px solid var(--green50);
+			border-radius: 10px;
+			cursor: pointer;
+			background-color: white;
+			height: 45px;
+		width: 45px;
+		}
 
 		p {
 			color: black;
 			background-color: white;
 			padding: 5px;
-			position: absolute;
-			bottom: -20px;
-			left: 50%;
-			transform: translateX(-50%);
-			z-index: 10;
-			display: none;
-			border: 1px solid black;
+			cursor: pointer;
+			font-weight: bold;
+		
+			border: 2px solid var(--green50);
 			border-radius: 6px;
 			width: max-content;
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
-			gap: 5px;
+			
 
-			span {
-				font-size: 10px;
-			}
+		
 		}
 
-		&:hover {
+		a:hover {
 			background-color: var(--green50);
 			border: 2px solid var(--grey100);
 			color: black;
 
-			p {
-				display: flex;
-			}
+	
+		}
+
+		a:hover ~ p {
+			background-color: var(--green50);
+			border: 2px solid black;
+
+		}
+
+		p:hover {
+			background-color: var(--green50);
+			border: 2px solid black;
 		}
 	}
 
