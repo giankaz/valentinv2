@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import { LazyLoadImage} from "react-lazy-load-image-component";
 import {
 	TbArrowBack,
 	TbArrowBigUpLines,
@@ -13,7 +13,7 @@ import dino from "../../../assets/dinologo.png";
 
 import mommyDb from "../../../databases/mommyDb";
 import dots from '../../../assets/dots.gif'
-
+import LazyLoad from "react-lazy-load";
 import { StyledMain, StyledModal, StyledUl } from "./styles";
 import { useHistory } from "react-router-dom";
 import LoadingComponent from "../../../components/Global/Loading";
@@ -25,6 +25,10 @@ type Database = {
 	src: string;
 	down?: boolean;
 };
+
+interface GalleryProps {
+	scrollPosition: any;
+}
 
 export default function GalleryGrid() {
 	const [dataBase, setDatabase] = useState<Database[]>([]);
@@ -52,19 +56,19 @@ export default function GalleryGrid() {
 				setDatabase(preBirth);
 				break;
 			case "ensaio-da-mamae":
+				
 				const mommy = mommyDb.map((item, i) => {
 					return {
-						src: `${process.env.PUBLIC_URL}/gallery/${id}/${item.src}`,
-						down: item.down ? true : false,
+						src: `${process.env.PUBLIC_URL}/gallery/${id}/${item.src}`
 					};
 				});
 				setDatabase(mommy);
 				break;
 			case "primeiro-mes":
+			
 				const first = firstMonthDb.map((item, i) => {
 					return {
-						src: `${process.env.PUBLIC_URL}/gallery/${id}/${item.src}`,
-						down: item.down ? true : false,
+						src: `${process.env.PUBLIC_URL}/gallery/${id}/${item.src}`
 					};
 				});
 				setDatabase(first);
@@ -72,8 +76,7 @@ export default function GalleryGrid() {
 			case "segundo-mes":
 				const second = secondMonthDb.map((item, i) => {
 					return {
-						src: `${process.env.PUBLIC_URL}/gallery/${id}/${item.src}`,
-						down: item.down ? true : false,
+						src: `${process.env.PUBLIC_URL}/gallery/${id}/${item.src}`
 					};
 				});
 				setDatabase(second);
@@ -131,15 +134,19 @@ export default function GalleryGrid() {
 		<StyledMain>
 			<StyledUl>
 				{dataBase.map((item, i) => {
+   				
 					return (
-						<LazyLoadImage
-							key={i}
-							alt=""
-							className={item.down ? "down_img" : "up_img"}
-							src={item.src}
-							afterLoad={() => setAnimation(true)}
-							onClick={() => openImg(item.src)}
-						/>
+							<img
+								onLoad={() => {
+									console.log('test')
+									setAnimation(true)
+								}}
+								
+								key={i}
+								alt=""
+								src={item.src}
+								onClick={() => openImg(item.src)}
+							/>
 					);
 				})}
 			</StyledUl>
@@ -167,7 +174,7 @@ export default function GalleryGrid() {
 			{isLoading && (
 				<LoadingComponent animation={animation}>
 					<img src={dino} alt="dino"></img>
-					<span className="loading_gallery">Carregando Fotos Isso pode demorar um pouco </span>
+					<span className="loading_gallery">Carregando Fotos, isso pode demorar um pouco </span>
 					<img src={dots} alt='' className="dots"/>
 				</LoadingComponent>
 			)}
@@ -197,3 +204,4 @@ export default function GalleryGrid() {
 		</StyledMain>
 	);
 }
+

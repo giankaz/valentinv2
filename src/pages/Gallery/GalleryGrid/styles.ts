@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const StyledMain = styled.main`
 	width: 100%;
-	background-color: var(--grey100);
 
 	display: flex;
 	justify-content: center;
@@ -62,36 +61,38 @@ export const StyledMain = styled.main`
 
 export const StyledUl = styled.ul`
 	width: 100%;
+	max-width: 1000px;
 	display: flex;
 	flex-flow: row wrap;
+
 	gap: 10px;
 
+
+	
+
 	img {
-		width: calc((100% - 30px) / 4);
-		height: auto;
+		
+		width: auto;
+		
+		
+		height: 200px;
 		border: 2px solid transparent;
 		cursor: pointer;
 		object-fit: cover;
+		object-position: center;
+		flex: 1;
+		
 
-
-		@media (max-width: 700px) {
-			width: calc((100% - 30px) / 3);
-
-		}
+	
 	}
 
 	img:hover {
 		border: 2px solid white;
-
 	}
 
-	.down_img {
-		width: calc((100% - 30px) / 2);
-		flex: 1;
-		justify-content: stretch;
-		align-items: stretch;
-	}
-`;
+
+
+`
 
 export const StyledModal = styled.div`
 	position: fixed;
@@ -101,7 +102,7 @@ export const StyledModal = styled.div`
 	height: 100vh;
 	display: flex;
 	justify-content: center;
-	align-items: flex-start;
+	align-items: center;
 	background-color: rgba(0, 0, 0, 0.75);
 	animation: fadein 0.5s both;
 
@@ -115,8 +116,9 @@ export const StyledModal = styled.div`
 	}
 
 	img {
-		height: 100vh;
-		width: auto;
+		height: auto;
+		width: 100%;
+		max-height: 100vh;
 	}
 
 	div {

@@ -1,8 +1,6 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Card from "../Global/Card";
 import { StyledMain } from "./styles";
-import test from '../../assets/val1.png'
 
 export default function SecondHome() {
 	const [age, setAge] = useState(0);
@@ -39,7 +37,7 @@ export default function SecondHome() {
 				</div>
 				<div className="section_div">
 				<Card description="Jogos educativos de tema infantil *Em construção*" title='Jogos' imgSRC={'https://media0.giphy.com/media/3o7TKJ5JF2fM6XcOpq/giphy.gif?cid=ecf05e479r890mkm73f3cawbf32ccx32tfq3uhe9tzstrea2&rid=giphy.gif&ct=g'} path='construindo'/>
-				<Card description="Que seu nenê mais que tudo!" title='Um Pai Babão' imgSRC={'https://media1.giphy.com/media/q3uDB1eaA2jEk/200.gif'} path='/'/>
+				<Card description="Que ama seu nenê mais que tudo!" title='Um Pai Babão' imgSRC={'https://media1.giphy.com/media/q3uDB1eaA2jEk/200.gif'} path='/'/>
 
 				</div>
 					<p className="section_continue">Continua...</p>
