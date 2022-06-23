@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const StyledMain = styled.main`
 	width: 100%;
@@ -6,6 +6,8 @@ export const StyledMain = styled.main`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	padding-top: 40px;
+	padding-bottom: 40px;
 
 	.loading_gallery {
 		color: white;
@@ -64,35 +66,34 @@ export const StyledUl = styled.ul`
 	max-width: 1000px;
 	display: flex;
 	flex-flow: row wrap;
-
 	gap: 10px;
 
+	li {
+		height: 45vh;
+		flex-grow: 1;
+	}
 
-	
+	@media (max-width: 600px) {
+		li {
+
+			height: 20vh;
+		}
+	}
 
 	img {
-		
-		width: auto;
-		
-		
-		height: 200px;
+		max-height: 100%;
+		min-width: 100%;
+		object-fit: cover;
+		vertical-align: bottom;
+
 		border: 2px solid transparent;
 		cursor: pointer;
-		object-fit: cover;
-		object-position: center;
-		flex: 1;
-		
-
-	
 	}
 
 	img:hover {
 		border: 2px solid white;
 	}
-
-
-
-`
+`;
 
 export const StyledModal = styled.div`
 	position: fixed;
@@ -115,6 +116,10 @@ export const StyledModal = styled.div`
 		}
 	}
 
+	.test {
+		animation: fadein 0.5s both;
+	}
+
 	img {
 		height: auto;
 		width: 100%;
@@ -125,7 +130,6 @@ export const StyledModal = styled.div`
 		position: relative;
 	}
 	button {
-		position: absolute;
 		border: none;
 		background-color: transparent;
 		color: rgba(215, 224, 218, 0.92);
@@ -133,6 +137,7 @@ export const StyledModal = styled.div`
 		transition: 0.5s;
 	}
 	.gallery_close {
+		position: absolute;
 		background-color: white;
 		border: 2px solid black;
 		border-radius: 100%;
@@ -145,31 +150,48 @@ export const StyledModal = styled.div`
 		z-index: 10;
 	}
 
-	.gallery_right {
-		height: 100vh;
-		right: -50px;
-	}
-	.gallery_left {
-		height: 100vh;
-		left: -50px;
-	}
-
-	.gallery_right:hover,
-	.gallery_left:hover {
-		border: none;
-		background-color: rgba(106, 106, 106, 0.27);
-	}
 	@media (max-width: 1020px) {
+		div {
+			position: static;
+		}
 		button {
 			position: fixed;
 		}
-		.gallery_left {
-			position: fixed;
-			left: 0;
-		}
-		.gallery_right {
-			position: fixed;
-			right: 0;
-		}
+	}
+`;
+
+interface ArrowProps {
+	left?: boolean;
+	right?: boolean;
+	leftClick?: boolean;
+	rightClick?: boolean;
+}
+
+export const StyledArrow = styled.button<ArrowProps>`
+	position: fixed;
+	border: none !important;
+	height: 100vh;
+	top: 0;
+	${(props) =>
+		props.left
+			? css`
+					left: 0;
+			  `
+			: css`
+					right: 0;
+			  `};
+
+	&:nth-child(odd) {
+		background-color: ${(props) =>
+			props.leftClick && "rgba(106, 106, 106, 0.27)"};
+	}
+	&:nth-child(even) {
+		background-color: ${(props) =>
+			props.rightClick && "rgba(106, 106, 106, 0.27)"};
+	}
+
+	&:hover {
+		border: none;
+		background-color: rgba(106, 106, 106, 0.27);
 	}
 `;
