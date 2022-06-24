@@ -222,7 +222,7 @@ export default function GalleryGrid() {
 								}}
 								className="gallery_close"
 							>
-								<IoMdClose size={20} />
+								<IoMdClose size={30} />
 							</button>
 							<StyledArrow
 								left

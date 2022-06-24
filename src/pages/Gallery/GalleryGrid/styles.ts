@@ -138,16 +138,19 @@ export const StyledModal = styled.div`
 	}
 	.gallery_close {
 		position: absolute;
-		background-color: white;
-		border: 2px solid black;
+		color: white;
 		border-radius: 100%;
-		width: 40px;
-		height: 40px;
+		width: 60px;
+		height: 60px;
 		cursor: pointer;
-		color: black;
-		right: 10px;
-		top: 15px;
+		
+		right: 0px;
+		top: 0;
 		z-index: 10;
+	}
+
+	.gallery_close:hover {
+		border: none;
 	}
 
 	@media (max-width: 1020px) {

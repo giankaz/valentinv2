@@ -4,16 +4,16 @@ export const StyledHeader = styled.div`
 	color: black;
 	display: flex;
 	flex-direction: row;
-	gap: 20px;
+	gap: 10px;
 
 	section {
 		display: flex;
-		gap: 20px;
+		gap: 10px;
 		
 	}
 
 	div {
-	
+		width: 75px;
 		color: var(--green50);
 		cursor: pointer;
 		display: flex;
@@ -32,15 +32,17 @@ export const StyledHeader = styled.div`
 		}
 
 		p {
+			width: 100%;
 			color: black;
 			background-color: white;
 			padding: 5px;
 			cursor: pointer;
 			font-weight: bold;
+			font-size: 13.5px;
 		
 			border: 2px solid var(--green50);
 			border-radius: 6px;
-			width: max-content;
+		
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
@@ -51,7 +53,7 @@ export const StyledHeader = styled.div`
 
 		a:hover {
 			background-color: var(--green50);
-			border: 2px solid var(--grey100);
+			border: 2px solid black;
 			color: black;
 
 	
