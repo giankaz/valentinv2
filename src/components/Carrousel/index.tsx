@@ -14,7 +14,7 @@ export default function CarrouselComponent({
 	return (
 		<Carousel
 			infiniteLoop
-			interval={7000}
+			interval={4000}
 			autoPlay={autoPlay}
 			className={className}
 			autoFocus

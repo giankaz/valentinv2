@@ -1,4 +1,4 @@
-import {Switch, Route} from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import NotFound from '../pages/404'
 import Building from '../pages/Building'
 import Gallery from '../pages/Gallery'
@@ -33,6 +33,7 @@ export default function Routes() {
     <Route  path='/foto-nao-encontrada'>
         <NotFound/>
     </Route> 
+ 
     </Switch>
   )
 }

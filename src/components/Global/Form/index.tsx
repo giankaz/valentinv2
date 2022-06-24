@@ -24,7 +24,7 @@ export default function Form({title}: FormProps) {
   return (
     <form onSubmit={(event: React.ChangeEvent<HTMLFormElement>) => {
       event.preventDefault()
-      console.log(formData)
+    
     }}>
         <h2>{title}</h2>
         <input type='text' placeholder="Name" value={formData.name} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setFormData({...formData, name: event.target.value})}/>

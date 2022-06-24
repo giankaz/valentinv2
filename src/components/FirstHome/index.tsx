@@ -20,7 +20,7 @@ import LoadingComponent from "../Global/Loading";
 import Header from "../Global/Header";
 import Logo from "../Global/Logo";
 import CarrouselComponent from "../Carrousel";
-import dots from '../../assets/dots.gif'
+
 
 declare global {
 	interface Window {
@@ -38,17 +38,15 @@ export default function FirstHome() {
 		val4,
 		val5,
 	]);
-	const [animation, setAnimation] = useState(false);
 
-	useEffect(() => {
-		setTimeout(() => setAnimation(true), 2000);
+
+ 	useEffect(() => {
+
 		setTimeout(() => {
 			setIsLoading(false);
-			setAnimation(false);
-		}, 2500);
+		}, 2000);	
 
-		
-	}, []);
+	}, []); 
 
 	return (
 		<StyledDiv>
@@ -68,10 +66,7 @@ export default function FirstHome() {
 
 			{isLoading && (
 		
-				<LoadingComponent animation={animation}>
-						<img src={dino} alt="dino"></img>
-				    	<p>Carregando <img src={dots} alt='' className="dots"/></p>
-				</LoadingComponent>
+			<LoadingComponent/>
 			)}
 
 			<div className="opacity"></div>

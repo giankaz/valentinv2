@@ -3,8 +3,6 @@ import {
 	TbArrowBack
 } from "react-icons/tb";
 import { useHistory } from "react-router-dom";
-import dino from "../../assets/dinologo.png";
-import dots from "../../assets/dots.gif";
 import GalleryFolder from "../../components/Global/GalleryFolder";
 import Header from "../../components/Global/Header";
 import LoadingComponent from "../../components/Global/Loading";
@@ -12,7 +10,6 @@ import { StyledMain } from "./styles";
 
 export default function Gallery() {
 	const [isLoading, setIsLoading] = useState(true);
-	const [animation, setAnimation] = useState(false);
 	const [folders, setFolders] = useState([
 		{ description: "1º Mês", path: "primeiro-mes" },
 		{ description: "2º Mês", path: "segundo-mes" },
@@ -25,11 +22,11 @@ export default function Gallery() {
 
 
 	useEffect(() => {
-		setTimeout(() => setAnimation(true), 1000);
+
 		setTimeout(() => {
 			setIsLoading(false);
-			setAnimation(false);
 		}, 1500);
+
 	});
 
 	const handleBack = () => {
@@ -54,13 +51,7 @@ export default function Gallery() {
 			</section>
 
 			{isLoading && (
-				<LoadingComponent animation={animation}>
-					<img src={dino} alt="dino"></img>
-					<p>
-						Carregando
-						<img src={dots} alt="" />{" "}
-					</p>
-				</LoadingComponent>
+				<LoadingComponent />
 			)}
 		</StyledMain>
 	);

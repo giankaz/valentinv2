@@ -1,19 +1,16 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import { TbArrowBack, TbArrowBigUpLines } from "react-icons/tb";
-import { VscTriangleRight, VscTriangleLeft } from "react-icons/vsc";
 import { IoMdClose } from "react-icons/io";
+import { TbArrowBack, TbArrowBigUpLines } from "react-icons/tb";
+import { VscTriangleLeft, VscTriangleRight } from "react-icons/vsc";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useHistory, useParams } from "react-router-dom";
 import ScrollToTop from "react-scroll-to-top";
-import dino from "../../../assets/dinologo.png";
-import dots from "../../../assets/dots.gif";
-import { StyledArrow, StyledMain, StyledModal, StyledUl } from "./styles";
-import { useHistory } from "react-router-dom";
-import LoadingComponent from "../../../components/Global/Loading";
 import { defineSwipe, Swipeable } from "react-touch";
+import LoadingComponent from "../../../components/Global/Loading";
+import { StyledArrow, StyledMain, StyledModal, StyledUl } from "./styles";
 
 import { initializeApp } from "firebase/app";
-import { getStorage, ref, getDownloadURL, listAll } from "firebase/storage";
+import { getDownloadURL, getStorage, listAll, ref } from "firebase/storage";
 import { useLocation } from "react-router-dom";
 
 const firebaseConfig = {
@@ -29,8 +26,6 @@ const firebaseApp = initializeApp(firebaseConfig);
 
 export default function GalleryGrid() {
 	const [dataBase, setDatabase] = useState<any>([]);
-
-	const [animation, setAnimation] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
 	const [currentImg, setCurrentImg] = useState("");
 
@@ -154,14 +149,6 @@ export default function GalleryGrid() {
 		}
 	}, [location, dataBase]);
 
-	useEffect(() => {
-		if (animation) {
-			setTimeout(() => {
-				setIsLoading(false);
-				setAnimation(false);
-			}, 500);
-		}
-	}, [animation]);
 
 	const handleBack = () => {
 		history.push("/galeria");
@@ -182,7 +169,7 @@ export default function GalleryGrid() {
 						<li key={i}>
 							<img
 								onLoad={() => {
-									setAnimation(true);
+									setIsLoading(false);
 								}}
 								alt=""
 								src={item}
@@ -214,13 +201,7 @@ export default function GalleryGrid() {
 			)}
 
 			{isLoading && (
-				<LoadingComponent animation={animation}>
-					<img src={dino} alt="dino"></img>
-					<span className="loading_gallery">
-						Carregando Fotos, isso pode demorar um pouco{" "}
-					</span>
-					<img src={dots} alt="" className="dots" />
-				</LoadingComponent>
+				<LoadingComponent/>
 			)}
 
 			{currentImg !== "" && (

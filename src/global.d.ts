@@ -4,3 +4,4 @@ declare module 'list-react-files'
 declare module 'react-scroll-to-top'
 declare module 'react-lazy-load'
 declare module 'react-touch'
+
