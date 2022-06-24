@@ -63,6 +63,10 @@ table {
 	--green50: #92b811;
 	--green100: #9ad5ad;
 }
+#scrollToTop:hover {
+  border: 2px solid var(--green50) !important;
+		color: var(--green50);
+}
 
 /* ===== Scrollbar CSS ===== */
   /* Firefox */

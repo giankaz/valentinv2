@@ -10,7 +10,7 @@ export const StyledFooter = styled.footer`
 
 	display: flex;
 	align-items: flex-end;
-	justify-content: flex-end;
+	justify-content: flex-start;
 
 	border-top: 2px solid white;
 
@@ -21,7 +21,7 @@ export const StyledFooter = styled.footer`
 		border-radius: 8px;
 		border: 2px solid black;
 		margin-bottom: 10px;
-		margin-right: 10px;
+		margin-left: 10px;
 
 		display: flex;
 		justify-content: center;
