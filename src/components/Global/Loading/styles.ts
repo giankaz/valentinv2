@@ -18,8 +18,7 @@ export const StyledLoading = styled.div`
 	p {
 	
 		width: 220px;
-		text-shadow: 2px 0 0 black, -2px 0 0 black, 0 2px 0 black, 0 -2px 0 black,
-			1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
+		text-shadow: var(--textShadowBlack);
 		font-size: 42px;
 		color: white;
 		font-family: "Salsa", cursive;

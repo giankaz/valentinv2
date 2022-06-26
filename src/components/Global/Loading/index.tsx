@@ -6,11 +6,12 @@ export default function LoadingComponent() {
 	const [dots, setDots] = useState("...");
 
 	useEffect(() => {
+		
       setTimeout(() => {
         if (dots === '...') setDots('.')
         if (dots === '..') setDots('...')
         if (dots === '.') setDots('..')
-      }, 1000)
+      }, 300)
 		
 	}, [dots]);
   

@@ -78,10 +78,8 @@ ul {
 .gallery_title {
    margin-top: 40px;
    font-size: 30px;
-   text-shadow: 2px 0 0 white, -2px 0 0 white,
-		0 2px 0 white, 0 -2px 0 white, 1px 1px white,
-		-1px -1px 0 white, 1px -1px 0 white,
-		-1px 1px 0 white;
+   text-shadow: var(--textShadowWhite);
+
 }
 
 `

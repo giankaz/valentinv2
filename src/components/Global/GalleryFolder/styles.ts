@@ -18,20 +18,14 @@ svg {
 
 p {
     font-size: 20px;
-    text-shadow: 2px 0 0 white, -2px 0 0 white,
-		0 2px 0 white, 0 -2px 0 white, 1px 1px white,
-		-1px -1px 0 white, 1px -1px 0 white,
-		-1px 1px 0 white;
+    text-shadow:var(--textShadowWhite)
 }
 
 
 &:hover {
 	p {
 		color: white;
-	    text-shadow: 2px 0 0 black, -2px 0 0 black,
-		0 2px 0 black, 0 -2px 0 black, 1px 1px black,
-		-1px -1px 0 black, 1px -1px 0 black,
-		-1px 1px 0 black;	
+	    text-shadow: var(--textShadowBlack);
 	}
 }
 `

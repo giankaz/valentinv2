@@ -59,7 +59,14 @@ table {
 
 :root {
 	--grey100: #565656;	
-
+  --textShadowWhite: 2px 0 0 white, -2px 0 0 white,
+		0 2px 0 white, 0 -2px 0 white, 1px 1px white,
+		-1px -1px 0 white, 1px -1px 0 white,
+		-1px 1px 0 white;
+    --textShadowBlack: 2px 0 0 black, -2px 0 0 black,
+		0 2px 0 black, 0 -2px 0 black, 1px 1px black,
+		-1px -1px 0 black, 1px -1px 0 black,
+		-1px 1px 0 white;
 	--green50: #92b811;
 	--green100: #9ad5ad;
 }
@@ -100,4 +107,14 @@ table {
     text-decoration: none;
   }
 
-`
+  input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+`;

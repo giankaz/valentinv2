@@ -4,6 +4,7 @@ import Building from '../pages/Building'
 import Gallery from '../pages/Gallery'
 import GalleryGrid from '../pages/Gallery/GalleryGrid'
 import Games from '../pages/Games'
+import DinoMath from '../pages/Games/DinoMath'
 import Home from '../pages/Home'
 
 export default function Routes() {
@@ -14,6 +15,9 @@ export default function Routes() {
     </Route>
     <Route exact path='/jogos'>
         <Games/>
+    </Route>
+    <Route  path='/jogos/matematica-dino'>
+        <DinoMath/>
     </Route>
     <Route exact path='/galeria'>
         <Gallery/>

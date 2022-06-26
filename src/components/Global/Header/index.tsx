@@ -30,8 +30,8 @@ export default function Header() {
 			</section>
 
 			<section>
-				<div onClick={() => handleClick('construindo')}>
-					<Link to="/construindo">
+				<div onClick={() => handleClick('jogos')}>
+					<Link to="/jogos">
 						<IoLogoGameControllerB size={40} />
 					</Link>
 						<p>Jogos</p>

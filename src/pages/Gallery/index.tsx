@@ -9,7 +9,7 @@ import LoadingComponent from "../../components/Global/Loading";
 import { StyledMain } from "./styles";
 
 import { initializeApp } from "firebase/app";
-import { getDownloadURL, getStorage, listAll, ref } from "firebase/storage";
+import { getStorage, listAll, ref } from "firebase/storage";
 
 const firebaseConfig = {
 	apiKey: "AIzaSyBokxAhCwSbXRnehbdC6z7JlYNwBPXVVuU",

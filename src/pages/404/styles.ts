@@ -9,10 +9,8 @@ export const StyledMain = styled.main`
 	justify-content: center;
 	align-items: center;
     color: black;
-    text-shadow: 2px 0 0 white, -2px 0 0 white,
-		0 2px 0 white, 0 -2px 0 white, 1px 1px white,
-		-1px -1px 0 white, 1px -1px 0 white,
-		-1px 1px 0 white;
+    text-shadow: var(--textShadowWhite);
+
 
    img {
     border-radius: 8px;

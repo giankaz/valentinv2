@@ -35,19 +35,15 @@ padding: 10px;
         font-size: 40px;
         font-weight: bold;
         width: 100%;
-        text-shadow: 2px 0 0 #fff, -2px 0 0 #fff,
-		0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff,
-		-1px -1px 0 #fff, 1px -1px 0 #fff,
-		-1px 1px 0 #fff;
+        text-shadow: var(--textShadowWhite);
+
     }
 
     p {
         font-size: 20px;
         font-weight: bold;
-        text-shadow: 2px 0 0 #fff, -2px 0 0 #fff,
-		0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff,
-		-1px -1px 0 #fff, 1px -1px 0 #fff,
-		-1px 1px 0 #fff;
+        text-shadow: var(--textShadowWhite);
+
     text-align: start;
 
     }

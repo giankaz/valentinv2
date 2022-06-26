@@ -14,10 +14,8 @@ background-image: linear-gradient(to bottom right, #ffffff, #82a91f,  #0a4c42, #
 h1 {
     font-size: 30px;
     color: black;
-    text-shadow: 2px 0 0 white, -2px 0 0 white,
-		0 2px 0 white, 0 -2px 0 white, 1px 1px white,
-		-1px -1px 0 white, 1px -1px 0 white,
-		-1px 1px 0 white;
+    text-shadow: var(--textShadowWhite);
+
 }
 
 img {
