@@ -8,26 +8,63 @@ import Header from "../../components/Global/Header";
 import LoadingComponent from "../../components/Global/Loading";
 import { StyledMain } from "./styles";
 
+import { initializeApp } from "firebase/app";
+import { getDownloadURL, getStorage, listAll, ref } from "firebase/storage";
+
+const firebaseConfig = {
+	apiKey: "AIzaSyBokxAhCwSbXRnehbdC6z7JlYNwBPXVVuU",
+	authDomain: "site-valentin.firebaseapp.com",
+	projectId: "site-valentin",
+	storageBucket: "site-valentin.appspot.com",
+	messagingSenderId: "302720444451",
+	appId: "1:302720444451:web:eb81039d3e1f54295a2996",
+};
+
+const firebaseApp = initializeApp(firebaseConfig);
+
 export default function Gallery() {
 	const [isLoading, setIsLoading] = useState(true);
-	const [folders, setFolders] = useState([
-		{ description: "1º Mês", path: "primeiro-mes" },
-		{ description: "2º Mês", path: "segundo-mes" },
-		/* 	{description:"3º Mês", path: 'terceiro-mes'}, */
-		{ description: "Ensaio da Mamãe", path: "ensaio-da-mamae" },
-		{ description: "Na Barriga da Mamãe", path: "barriga-da-mamae" },
-	]);
+
+
+	const [database, setDatabase] = useState([])
 
 	const history = useHistory();
 
+	const storage = getStorage(firebaseApp);
+	const storageRef = ref(
+		storage,
+		`gs://site-valentin.appspot.com/images/`
+	);
+
 
 	useEffect(() => {
+		
+		const getItem = async () => {
+			const srcArray: any = [];
+			const list = await listAll(storageRef);
+       
 
-		setTimeout(() => {
-			setIsLoading(false);
-		}, 1500);
+			const listArray = await list.prefixes;
 
-	});
+			await listArray;
+				
+
+	 		listArray.forEach((listItem) => {
+				const treatedWord = listItem.fullPath.split('images/')[1].replaceAll('-', ' ').split(' ').map((word) => word[0].toUpperCase() + word.substring(1)).join(' ');
+				const data = listItem.fullPath.split('images/')[1]
+               
+
+				srcArray.push({treatedWord, data})
+			}); 
+
+			return srcArray
+		};
+
+		getItem().then((res) =>	{
+			setDatabase(res)
+			setIsLoading(false)
+		})
+	}, []);
 
 	const handleBack = () => {
 		history.push("/");
@@ -44,7 +81,7 @@ export default function Gallery() {
 				</header>
 				<h1 className="gallery_title">Galeria de Fotos</h1>
 				<ul>
-					{folders.map((folder, i) => (
+					{database.map((folder, i) => (
 						<GalleryFolder key={i} payload={folder} />
 					))}
 				</ul>

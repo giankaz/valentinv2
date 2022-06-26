@@ -1,13 +1,15 @@
 import styled from "styled-components";
 
 export const StyledLi = styled.li`
-width: calc((100% - 40px) / 3);
+width: calc((100% - 100px) / 6);
 
 @media (max-width: 650px) {
-	width: calc((100% - 20px) / 2);
+	width: calc((100% - 40px) / 3);
 }
 
 cursor: pointer;
+
+
 
 svg {
 	width: 100%;
@@ -22,4 +24,14 @@ p {
 		-1px 1px 0 white;
 }
 
+
+&:hover {
+	p {
+		color: white;
+	    text-shadow: 2px 0 0 black, -2px 0 0 black,
+		0 2px 0 black, 0 -2px 0 black, 1px 1px black,
+		-1px -1px 0 black, 1px -1px 0 black,
+		-1px 1px 0 black;	
+	}
+}
 `

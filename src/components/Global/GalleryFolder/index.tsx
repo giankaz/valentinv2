@@ -5,9 +5,10 @@ import { StyledLi } from "./styles";
 
 interface GalleryFolderProps {
 	payload: {
-		description: string;
-		path: string
-	};
+		treatedWord: string;
+		data: string;
+	
+	}
 }
 
 export default function GalleryFolder({ payload }: GalleryFolderProps) {
@@ -15,12 +16,12 @@ export default function GalleryFolder({ payload }: GalleryFolderProps) {
 	const history = useHistory()
 
 	const handleClick = () => {
-		history.push(`/galeria/${payload.path}`)
+		history.push(`/galeria/${payload.data}`)
 	}
 	return (
 		<StyledLi onClick={handleClick} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
 			{hover ? <FcOpenedFolder /> : <FcFolder />}
-			<p>{payload.description}</p>
+			<p>{payload.treatedWord}</p>
 		</StyledLi>
 	);
 }

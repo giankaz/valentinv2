@@ -10,7 +10,7 @@ import LoadingComponent from "../../../components/Global/Loading";
 import { StyledArrow, StyledMain, StyledModal, StyledUl } from "./styles";
 
 import { initializeApp } from "firebase/app";
-import { getDownloadURL, getStorage, listAll, ref } from "firebase/storage";
+import { getDownloadURL, getStorage, ref, list} from "firebase/storage";
 import { useLocation } from "react-router-dom";
 
 const firebaseConfig = {
@@ -105,14 +105,14 @@ export default function GalleryGrid() {
 	}, [currentImg]);
 
 	useEffect(() => {
-		const srcArray: any = [];
-
+		
 		const getItem = async () => {
-			const list = await listAll(storageRef);
+			const newList = await list(storageRef, {maxResults: 100})
+			const srcArray: any = [];
+			
+			const listArray = await newList.items
 
-			const listArray = await list.items;
-
-			await listArray;
+			await listArray
 
 			listArray.forEach(async (listItem) => {
 				const data = await getDownloadURL(listItem);
@@ -121,18 +121,26 @@ export default function GalleryGrid() {
 
 				srcArray.push(data);
 			});
-		};
-		getItem();
 
-		setTimeout(() => {
-			setDatabase(srcArray);
-		}, 4000);
+			return srcArray
+		};
+
+		getItem().then((res) => {	
+
+			setTimeout(() => {
+				setDatabase(res)
+			}, 2000)
+
+		})
+
 	}, []);
+
 
 	useEffect(() => {
 		const token = location.pathname.split("/")[3];
-
+	
 		if (token) {
+			
 			if (dataBase.length > 2) {
 				const newCurrentImg = dataBase.find(
 					(src: any) => src.split("token=")[1] === token
@@ -147,7 +155,7 @@ export default function GalleryGrid() {
 		} else {
 			setCurrentImg("");
 		}
-	}, [location, dataBase]);
+	}, [location, dataBase, isLoading]);
 
 
 	const handleBack = () => {
@@ -168,9 +176,11 @@ export default function GalleryGrid() {
 					return (
 						<li key={i}>
 							<img
-								onLoad={() => {
-									setIsLoading(false);
-								}}
+							onLoad={() => {
+								if (i === dataBase.length - 1) {
+									setIsLoading(false)
+								}
+							}}
 								alt=""
 								src={item}
 								onClick={() => openImg(item)}
@@ -244,3 +254,21 @@ export default function GalleryGrid() {
 		</StyledMain>
 	);
 }
+
+
+	/* 		const list = await listAll(storageRef);
+			const srcArray: any = [];
+
+			const listArray = await list.items;
+
+			await listArray;
+
+			listArray.forEach(async (listItem) => {
+				const data = await getDownloadURL(listItem);
+
+				await data;
+
+				srcArray.push(data);
+			});
+
+			return srcArray */
