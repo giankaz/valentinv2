@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import skybg from '../../../assets/skybg.jpg'
-import ground from '../../../assets/ground.webp'
+import ground from '../../../assets/newground.png'
 
 interface DivProps {
 	bgImage?: string;
