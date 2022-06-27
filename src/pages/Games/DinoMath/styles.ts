@@ -27,7 +27,7 @@ export const StyledMain = styled.main<MainProps>`
 	background-size: contain;
 	animation: right-walk 40s infinite;
 	animation-timing-function: linear;
-	transition: 0.2s;
+	transition: 2.2s;
 	
 
 	filter: brightness(${props => props.night ? '80%' : '100%'});
