@@ -16,6 +16,7 @@ interface MainProps {
 }
 
 export const StyledMain = styled.main<MainProps>`
+
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -28,6 +29,7 @@ export const StyledMain = styled.main<MainProps>`
 	animation-timing-function: linear;
 	transition: 2.5s;
 	overflow: hidden;
+	filter: brightness(${props => props.night ? '80%' : '100%'});
 	@keyframes right-walk {
 		100% {
 			background-position: -6000px;
@@ -340,7 +342,7 @@ export const StyledMain = styled.main<MainProps>`
 		position: absolute;
 		top: 0;
 		left: 0;
-		filter: brightness(90%);
+		filter: brightness(100%);
 		z-index: 0;
 		transition: 0.5;
 		animation: come-left-sky 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940);
