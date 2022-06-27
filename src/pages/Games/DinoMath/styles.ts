@@ -133,10 +133,10 @@ export const StyledMain = styled.main<MainProps>`
 		bottom: 0;
 		left: 0;
 		width: 100%;
-		height: 20vh;
+		height: 200px;
 		background: url(${ground}) 0 0 repeat;
 		background-size: cover;
-		background-position: center;
+		background-position: top;
 		animation: right-walk 60s infinite;
 		animation-play-state: ${(props) => {
 			if (!props.gameStarted) {
@@ -168,17 +168,17 @@ export const StyledMain = styled.main<MainProps>`
 				if (props.goDown) {
 					return "80px";
 				}
-				return "66px";
+				return "95px";
 			}};
 			animation: shake-vertical 2s cubic-bezier(0.455, 0.03, 0.515, 0.955)
 				infinite both;
 			transition: 1s;
-			z-index: 3;
+			z-index: 5;
 		}
 
 		.shadow {
 			position: absolute;
-			bottom: 70px;
+			bottom: 95px;
 			left: ${(props) => {
 				if (props.jump) {
 					return "350px";
@@ -209,19 +209,9 @@ export const StyledMain = styled.main<MainProps>`
 					}
 					return "20px";
 				}};
-				bottom: ${(props) => {
-					if (props.jump) {
-						return "400px";
-					}
-					if (props.goDown) {
-						return "80px";
-					}
-					return "80px";
-				}};
 			}
 
 			.shadow {
-				bottom: 70px;
 				left: ${(props) => {
 					if (props.jump) {
 						return "250px";
@@ -246,19 +236,9 @@ export const StyledMain = styled.main<MainProps>`
 					}
 					return "20px";
 				}};
-				bottom: ${(props) => {
-					if (props.jump) {
-						return "400px";
-					}
-					if (props.goDown) {
-						return "80px";
-					}
-					return "50px";
-				}};
 			}
 
 			.shadow {
-				bottom: 70px;
 				left: ${(props) => {
 					if (props.jump) {
 						return "250px";
@@ -268,7 +248,7 @@ export const StyledMain = styled.main<MainProps>`
 					}
 					return "40px";
 				}};
-				bottom: 40px;
+
 			
 		
 			}
@@ -373,7 +353,7 @@ export const StyledMain = styled.main<MainProps>`
 		position: absolute;
 		right: ${(props) => (props.cactusFade ? "110vw" : "40%")};
 		transition: 2s;
-		bottom: 72px;
+		bottom: 105px;
 		animation: ${(props) => {
 			if (props.entrance) {
 				return "come-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both"
@@ -385,7 +365,7 @@ export const StyledMain = styled.main<MainProps>`
 		display: ${(props) => (props.cactusDisplayNone ? "block" : "none")};
 		position: absolute;
 		width: 140px;
-		bottom: 70px;
+		bottom: 100px;
 		transition: 2s;
 		right: ${(props) => (props.cactusFade ? "110vw" : "40%")};
 		height: 10px;

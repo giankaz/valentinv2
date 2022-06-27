@@ -67,6 +67,8 @@ export default function DinoMath() {
 	};
 
 	useEffect(() => {
+
+		setTimeout(() => setNight(true), 1000)
 		setTimeout(() => setNight(false), 2000)
 		setTimeout(() => setLoading(false), 2500)
 	    
@@ -182,9 +184,9 @@ export default function DinoMath() {
 				<button onClick={() => document.location.reload()}>Reiniciar</button>
 			</div>
 
-			{loading && 
+		 	{loading && 
 			<LoadingComponent/>
-			}
+			} 
 		</StyledMain>
 	);
 }

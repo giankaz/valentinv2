@@ -7,7 +7,8 @@ interface DivProps {
 }
 
 export const StyledDiv = styled.div<DivProps>`
-	width: fit-content;
+	width: 100%;
+	max-width: 350px;
 	padding: 20px;
 	display: flex;
 	flex-direction: column;
