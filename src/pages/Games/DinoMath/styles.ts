@@ -135,7 +135,7 @@ export const StyledMain = styled.main<MainProps>`
 		width: 100%;
 		height: 200px;
 		background: url(${ground}) 0 0 repeat;
-		background-size: cover;
+		background-size: contain;
 		background-position: top;
 		animation-timing-function: linear;
 		animation: right-walk 60s infinite;
