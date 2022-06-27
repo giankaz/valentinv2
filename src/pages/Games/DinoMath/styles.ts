@@ -446,7 +446,7 @@ export const StyledMain = styled.main<MainProps>`
 			width: 100%;
 			height: 140px;
 			background: url(${ground}) 0 0 repeat;
-			background-size: cover;
+			background-size: 908px 140px;
 			z-index: -1;
 
 			animation: right-walk-ground 1500s infinite;
