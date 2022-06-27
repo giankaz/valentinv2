@@ -126,7 +126,7 @@ export default function DinoMath() {
 	}, [userAnswer]);
 
 	useEffect(() => {
-		if (score % 5 === 0) {
+		if (score % 4 === 0) {
 			setNight(!night)
 		}
 	} , [score])
@@ -143,7 +143,7 @@ export default function DinoMath() {
 			stopGround={stopGround}
 		>
 			<section>
-				<div  className="ground"></div>
+
 				<img src={dino} alt="" className="dino" />
 				<div className="shadow"></div>
 				<img src={cactus} alt="cactus" className="cactus" />
@@ -186,6 +186,9 @@ export default function DinoMath() {
 				<button onClick={() => history.push('/jogos')}>Voltar</button>
 				<button onClick={() => document.location.reload()}>Reiniciar</button>
 			</div>
+
+			<div  className="ground"></div>
+
 
 		 	{loading && 
 			<LoadingComponent/>

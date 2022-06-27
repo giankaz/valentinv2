@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import msgbox from "../../../assets/messagebox.png";
 import nightsky from '../../../assets/nightskybg.jpg'
 import skybg from '../../../assets/skybg.jpg'
-import ground from '../../../assets/ground.png'
+import ground from '../../../assets/ground.webp'
 
 interface MainProps {
 	jump: boolean;
@@ -24,9 +24,9 @@ export const StyledMain = styled.main<MainProps>`
 	background: url(${props => props.night ? nightsky :skybg})
 		0 0 repeat;
 	background-size: contain;
-	animation: right-walk 120s infinite;
+	animation: right-walk 40s infinite;
 	animation-timing-function: linear;
-	transition: 1.5s;
+	transition: 2.5s;
 	overflow: hidden;
 	@keyframes right-walk {
 		100% {
@@ -135,20 +135,6 @@ export const StyledMain = styled.main<MainProps>`
 		left: 0;
 		width: 100%;
 		height: 200px;
-		
-		background-size: cover;
-		background-position: top;
-		animation-timing-function: linear;
-		animation: right-walk 60s infinite;
-		animation-play-state: ${(props) => {
-			if (!props.gameStarted) {
-					return "paused"
-			}
-
-			if (props.entrance) {
-				return "paused"
-			}
-		}};
 		transition: 0.5s;
 		.ground {
 			position: absolute;
@@ -158,6 +144,7 @@ export const StyledMain = styled.main<MainProps>`
 			height: 100%;
 			background: url(${ground}) 0 0 repeat;
 			background-size: cover;
+			z-index: 100;
 		   background-position: top;
 			animation: right-walk 40s infinite;
 	    	animation-play-state: ${(props) => {
@@ -169,7 +156,7 @@ export const StyledMain = styled.main<MainProps>`
 				return "paused"
 			}
 		}};
-		transition: 0.5s;
+	
 		}
 
 		.dino {
@@ -196,7 +183,7 @@ export const StyledMain = styled.main<MainProps>`
 			animation: shake-vertical 2s cubic-bezier(0.455, 0.03, 0.515, 0.955)
 				infinite both;
 			transition: 1s;
-			z-index: 5;
+			z-index: 105;
 		}
 
 		.shadow {
@@ -213,7 +200,7 @@ export const StyledMain = styled.main<MainProps>`
 			}};
 			height: 20px;
 			background-color: rgba(0, 0, 0, 0.51);
-			z-index: 0;
+			z-index: 102;
 			transition: 1s;
 			border-radius: 100%;
 			animation: incdec 1s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite both;
@@ -382,7 +369,7 @@ export const StyledMain = styled.main<MainProps>`
 				return "come-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both"
 			}
 		}};
-		z-index: 1;
+		z-index: 104;
 	}
 	.cactus_shadow {
 		display: ${(props) => (props.cactusDisplayNone ? "block" : "none")};
@@ -393,7 +380,7 @@ export const StyledMain = styled.main<MainProps>`
 		right: ${(props) => (props.cactusFade ? "110vw" : "40%")};
 		height: 10px;
 		background-color: rgba(0, 0, 0, 0.51);
-		z-index: 0;
+		z-index: 103;
 		border-radius: 100%;
 		animation: ${(props) => {
 			if (props.entrance) {
@@ -484,6 +471,36 @@ export const StyledMain = styled.main<MainProps>`
 			&:hover {
 				background-color: red;
 			}
+		}
+	}
+
+
+	.ground {
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			width: 9006px;
+			height: 200px;
+			background: url(${ground}) 0 0 repeat;
+			background-size: contain;
+			z-index: -1;
+
+			animation: right-walk-ground 1500s infinite;
+	    	animation-play-state: ${(props) => {
+			if (!props.gameStarted) {
+					return "paused"
+			}
+
+			if (props.entrance) {
+				return "paused"
+			}
+		}};
+	
+		}
+
+		@keyframes right-walk-ground {
+		100% {
+			background-position: -900600px;
 		}
 	}
 `;
