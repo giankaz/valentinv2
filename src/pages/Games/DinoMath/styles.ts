@@ -28,7 +28,7 @@ export const StyledMain = styled.main<MainProps>`
 	animation: right-walk 40s infinite;
 	animation-timing-function: linear;
 	transition: 2.5s;
-	overflow: hidden;
+
 	filter: brightness(${props => props.night ? '80%' : '100%'});
 	@keyframes right-walk {
 		100% {
@@ -317,10 +317,10 @@ export const StyledMain = styled.main<MainProps>`
 	.sun {
 		width: 20%;
 		min-width: 250px;
-		position: absolute;
+		position: fixed;
 		top: 0;
 		right: 0;
-		z-index: 0;
+		z-index: -40;
 		transition: 0.5;
 		animation: come-right-sky 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940);
 
@@ -339,11 +339,11 @@ export const StyledMain = styled.main<MainProps>`
 	.moon {
 		width: 20%;
 		min-width: 250px;
-		position: absolute;
 		top: 0;
 		left: 0;
 		filter: brightness(100%);
-		z-index: 0;
+		position: fixed;
+		z-index: -40;
 		transition: 0.5;
 		animation: come-left-sky 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940);
 
