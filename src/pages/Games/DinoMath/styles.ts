@@ -137,6 +137,7 @@ export const StyledMain = styled.main<MainProps>`
 		background: url(${ground}) 0 0 repeat;
 		background-size: cover;
 		background-position: top;
+		animation-timing-function: linear;
 		animation: right-walk 60s infinite;
 		animation-play-state: ${(props) => {
 			if (!props.gameStarted) {
