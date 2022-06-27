@@ -6,6 +6,8 @@ export default function Building() {
   const history = useHistory()
   
   useEffect(() => {
+		document.title = `Site do Valentin | Em construção `
+
     setTimeout(() => {
       history.push('/')
     }, 3500)

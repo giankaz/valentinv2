@@ -38,7 +38,7 @@ export default function Gallery() {
 
 
 	useEffect(() => {
-		
+		document.title = 'Site do Valentin | Galeria'
 		const getItem = async () => {
 			const srcArray: any = [];
 			const list = await listAll(storageRef);

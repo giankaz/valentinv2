@@ -3,8 +3,13 @@ import Footer from '../../components/Footer'
 import SecondHome from '../../components/SecondHome'
 import ScrollToTop from "react-scroll-to-top";
 import { TbArrowBigUpLines } from "react-icons/tb";
+import { useEffect } from 'react';
 
 export default function Home() {
+  useEffect(() => {
+		document.title = `Site do Valentin`
+
+  }, [])
   return (
     <>
     <FirstHome/>

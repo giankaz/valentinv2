@@ -75,6 +75,7 @@ export default function DinoMath() {
 	};
 
 	useEffect(() => {
+		document.title = 'Site do Valentin | Corrida da Matemática'
 		setTimeout(() => setNight(true), 1000);
 		setTimeout(() => {
 			setNight(false);

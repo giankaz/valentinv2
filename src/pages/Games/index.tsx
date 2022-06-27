@@ -15,6 +15,7 @@ export default function Games() {
 	};
 
 	useEffect(() => {
+		document.title = 'Site do Valentin | Jogos'
 		setTimeout(() => setLoading(false), 1000)
 	}, [])
 

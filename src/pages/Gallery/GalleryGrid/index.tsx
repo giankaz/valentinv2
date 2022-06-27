@@ -105,7 +105,8 @@ export default function GalleryGrid() {
 	}, [currentImg]);
 
 	useEffect(() => {
-		
+		const treatedWord = id.replaceAll('-', ' ').split(' ').map((word:any) => word[0].toUpperCase() + word.substring(1)).join(' ');
+		document.title = `Site do Valentin | ${treatedWord} `
 		const getItem = async () => {
 			const newList = await list(storageRef, {maxResults: 100})
 			const srcArray: any = [];

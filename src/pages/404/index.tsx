@@ -8,6 +8,8 @@ export default function NotFound() {
 	const location = useLocation()
 
 	useEffect(() => {
+		document.title = `Site do Valentin | Ops! Não encontrado `
+
 		if (location.pathname === '/foto-nao-encontrada') {
 			setTimeout(() => {
 				history.push('/galeria')
