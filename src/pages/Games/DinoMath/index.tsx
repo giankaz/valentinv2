@@ -8,6 +8,8 @@ import ground from "../../../assets/ground.png";
 import { useHistory } from "react-router-dom";
 import LoadingComponent from "../../../components/Global/Loading";
 import { GiReturnArrow, GiResonance } from "react-icons/gi";
+import { FaPlay, FaPause } from "react-icons/fa";
+import ReactAudioPlayer from "react-audio-player";
 
 export default function DinoMath() {
 	const [jump, setJump] = useState(false);
@@ -34,8 +36,21 @@ export default function DinoMath() {
 
 	const [userAnswer, setUserAnswer] = useState<any>("");
 	const [score, setScore] = useState(0);
+	const [audioState, setAudioState] = useState(true);
 
 	const history = useHistory();
+	
+
+	const startAudio = () => {
+	
+		setAudioState(true)
+	};
+
+	const stopAudio = () => {
+	
+		setAudioState(false)
+
+	};
 
 	const getRandomInt = (min: number, max: number) => {
 		min = Math.ceil(min);
@@ -64,9 +79,14 @@ export default function DinoMath() {
 	};
 
 	useEffect(() => {
+
 		setTimeout(() => setNight(true), 1000);
 		setTimeout(() => setNight(false), 2000);
-		setTimeout(() => setLoading(false), 2500);
+		setTimeout(() => {
+			setLoading(false);
+		}, 2500);
+
+
 	}, []);
 
 	useEffect(() => {
@@ -189,6 +209,9 @@ export default function DinoMath() {
 						<button onClick={() => document.location.reload()}>
 							<GiResonance /> Reiniciar
 						</button>
+						<button onClick={() => audioState ? stopAudio() : startAudio()}>
+						{audioState ? <FaPause size={20} />  : <FaPlay  size={20}/>} Música
+						</button>
 					</div>
 				</div>
 			)}
@@ -203,6 +226,13 @@ export default function DinoMath() {
 			<div className="ground"></div>
 
 			{loading && <LoadingComponent />}
+
+			<ReactAudioPlayer 
+			src="/soundtrack.mp3"
+			autoPlay
+			volume={0.4}
+			muted={!audioState}
+			/>
 		</StyledMain>
 	);
 }

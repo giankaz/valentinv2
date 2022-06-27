@@ -474,9 +474,11 @@ export const StyledMain = styled.main<MainProps>`
 
 		display: flex;
 		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 		gap: 20px;
 		button {
-	
+			width: 100%;
 			cursor: pointer;
 			padding: 5px;
 			background-color: var(--green100);
@@ -487,12 +489,16 @@ export const StyledMain = styled.main<MainProps>`
 			display: flex;
 			gap: 5px;
 			align-items: center;
-			justify-content: center;
+			justify-content: space-around;
 			
 
 			&:hover {
 				background-color: red;
 			}
+		}
+
+		svg {
+			cursor: pointer;
 		}
 	}
 
