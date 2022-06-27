@@ -4,6 +4,7 @@ import { StyledMain } from "./styles";
 import { useEffect, useState } from "react";
 import moon from '../../../assets/moon.webp'
 import sun from '../../../assets/sun.gif'
+import ground from "../../../assets/ground.png";
 import { useHistory } from "react-router-dom";
 import LoadingComponent from "../../../components/Global/Loading";
 
@@ -142,6 +143,7 @@ export default function DinoMath() {
 			stopGround={stopGround}
 		>
 			<section>
+				<div  className="ground"></div>
 				<img src={dino} alt="" className="dino" />
 				<div className="shadow"></div>
 				<img src={cactus} alt="cactus" className="cactus" />
@@ -178,6 +180,7 @@ export default function DinoMath() {
 					<button onClick={handleGameStart}>Iniciar!</button>
 				</div>
 			)}
+			
 
 			<div className="btns">
 				<button onClick={() => history.push('/jogos')}>Voltar</button>

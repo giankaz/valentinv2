@@ -1,8 +1,9 @@
 import styled, { css } from "styled-components";
-import ground from "../../../assets/ground.png";
 import msgbox from "../../../assets/messagebox.png";
 import nightsky from '../../../assets/nightskybg.jpg'
 import skybg from '../../../assets/skybg.jpg'
+import ground from '../../../assets/ground.png'
+
 interface MainProps {
 	jump: boolean;
 	goDown: boolean;
@@ -134,8 +135,8 @@ export const StyledMain = styled.main<MainProps>`
 		left: 0;
 		width: 100%;
 		height: 200px;
-		background: url(${ground}) 0 0 repeat;
-		background-size: contain;
+		
+		background-size: cover;
 		background-position: top;
 		animation-timing-function: linear;
 		animation: right-walk 60s infinite;
@@ -149,6 +150,27 @@ export const StyledMain = styled.main<MainProps>`
 			}
 		}};
 		transition: 0.5s;
+		.ground {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: url(${ground}) 0 0 repeat;
+			background-size: cover;
+		   background-position: top;
+			animation: right-walk 40s infinite;
+	    	animation-play-state: ${(props) => {
+			if (!props.gameStarted) {
+					return "paused"
+			}
+
+			if (props.entrance) {
+				return "paused"
+			}
+		}};
+		transition: 0.5s;
+		}
 
 		.dino {
 			width: 200px;
