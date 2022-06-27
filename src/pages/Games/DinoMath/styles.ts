@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import msgbox from "../../../assets/messagebox.png";
 import nightsky from '../../../assets/nightskybg.jpg'
 import skybg from '../../../assets/skybg.jpg'
-import ground from '../../../assets/ground.webp'
+import ground from '../../../assets/newground.png'
 
 interface MainProps {
 	jump: boolean;
@@ -479,8 +479,8 @@ export const StyledMain = styled.main<MainProps>`
 			position: fixed;
 			bottom: 0;
 			left: 0;
-			width: 9006px;
-			height: 200px;
+			width: 100%;
+			height: 140px;
 			background: url(${ground}) 0 0 repeat;
 			background-size: contain;
 			z-index: -1;
