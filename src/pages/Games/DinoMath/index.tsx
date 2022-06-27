@@ -2,6 +2,11 @@ import dino from "../../../assets/mathdino.png";
 import cactus from "../../../assets/cactus.png";
 import { StyledMain } from "./styles";
 import { useEffect, useState } from "react";
+import moon from '../../../assets/moon.webp'
+import sun from '../../../assets/sun.gif'
+import { useHistory } from "react-router-dom";
+import LoadingComponent from "../../../components/Global/Loading";
+
 
 export default function DinoMath() {
 	const [jump, setJump] = useState(false);
@@ -12,9 +17,12 @@ export default function DinoMath() {
 	const [cactusFade, setCactusFade] = useState(false)
 	const [cactusDisplayNone, setCactusDisplayNone] = useState(false)
 
+	const [night, setNight] = useState(true)
+
 
 	const [gameStarted, setGameStarted] = useState(false);
 	const [showMessage, setShowMessage] = useState(false);
+	const [loading, setLoading] = useState(true)
 
 	const [stopGround, setStopGround] = useState(false);
 
@@ -24,9 +32,11 @@ export default function DinoMath() {
 	const [operator, setOperator] = useState(1);
 	const [shownOperator, setShownOperator] = useState("+");
 	const [answer, setAnswer] = useState<any>(null);
-	console.log(`🤖 ~ DinoMath ~ answer`, answer);
+
 	const [userAnswer, setUserAnswer] = useState<any>("");
 	const [score, setScore] = useState(0);
+
+	const history = useHistory()
 
 	const getRandomInt = (min: number, max: number) => {
 		min = Math.ceil(min);
@@ -37,7 +47,7 @@ export default function DinoMath() {
 	const handleGameStart = () => {
 		const newNumber1 = getRandomInt(1, 10);
 		const newNumber2 = getRandomInt(1, 10);
-		const newOperator = getRandomInt(1, 5);
+		const newOperator = getRandomInt(1, 3);
 
 		setNumber1(newNumber1);
 		setNumber2(newNumber2);
@@ -55,6 +65,12 @@ export default function DinoMath() {
 
 		}, 2000)
 	};
+
+	useEffect(() => {
+		setTimeout(() => setNight(false), 2000)
+		setTimeout(() => setLoading(false), 2500)
+	    
+	}, [])
 
 	useEffect(() => {
 		if (operator === 1) {
@@ -106,6 +122,12 @@ export default function DinoMath() {
 		}
 	}, [userAnswer]);
 
+	useEffect(() => {
+		if (score % 5 === 0) {
+			setNight(!night)
+		}
+	} , [score])
+
 	return (
 		<StyledMain
 		    gameStarted={gameStarted}
@@ -114,7 +136,7 @@ export default function DinoMath() {
 			entrance={entrance}
 			cactusDisplayNone={cactusDisplayNone}
 			cactusFade={cactusFade}
-
+			night={night}
 			stopGround={stopGround}
 		>
 			<section>
@@ -140,20 +162,29 @@ export default function DinoMath() {
 			)}
 
 			<img
-				src="https://i.pinimg.com/originals/ac/6e/06/ac6e06f77344e757114f4b3ac9fdd79c.gif"
+				src={night ? moon : sun}
 				alt="sun"
-				className="sun"
+				className={night? 'moon' : 'sun'}
 			/>
 
 			<div className="score">{score}</div>
 
 			{!gameStarted && (
 				<div className="start">
-					<p>Resolva os cáculos matématicos </p>
-					<p>para pular sobre os inimigos!</p>
+					<p>Resolva os cálculos para </p>
+					<p>pular sobre os inimigos!</p>
 					<button onClick={handleGameStart}>Iniciar!</button>
 				</div>
 			)}
+
+			<div className="btns">
+				<button onClick={() => history.push('/jogos')}>Voltar</button>
+				<button onClick={() => document.location.reload()}>Reiniciar</button>
+			</div>
+
+			{loading && 
+			<LoadingComponent/>
+			}
 		</StyledMain>
 	);
 }

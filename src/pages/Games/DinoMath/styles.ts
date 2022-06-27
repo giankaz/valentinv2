@@ -1,7 +1,8 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import ground from "../../../assets/ground.png";
 import msgbox from "../../../assets/messagebox.png";
-
+import nightsky from '../../../assets/nightskybg.jpg'
+import skybg from '../../../assets/skybg.jpg'
 interface MainProps {
 	jump: boolean;
 	goDown: boolean;
@@ -10,6 +11,7 @@ interface MainProps {
 	cactusFade: boolean;
 	cactusDisplayNone: boolean;
 	entrance: boolean;
+	night: boolean;
 }
 
 export const StyledMain = styled.main<MainProps>`
@@ -18,12 +20,12 @@ export const StyledMain = styled.main<MainProps>`
 	left: 0;
 	width: 100%;
 	height: 100vh;
-	background: url("https://thumbs.dreamstime.com/b/clouds-vector-seamless-pattern-cute-cartoon-cloud-light-blue-sky-wallpaper-kid-bedroom-adorable-backdrop-paper-printing-195911468.jpg")
+	background: url(${props => props.night ? nightsky :skybg})
 		0 0 repeat;
 	background-size: contain;
 	animation: right-walk 120s infinite;
 	animation-timing-function: linear;
-	transition: 0.5s;
+	transition: 1.5s;
 	overflow: hidden;
 	@keyframes right-walk {
 		100% {
@@ -59,6 +61,7 @@ export const StyledMain = styled.main<MainProps>`
 			font-size: 35px;
 			font-weight: bold;
 			text-align: center;
+			background-color: transparent;
 			border: none;
 			border-bottom: 2px solid black;
 			font-family: "VT323", monospace;
@@ -81,10 +84,12 @@ export const StyledMain = styled.main<MainProps>`
 	}
 .score {
 	position: absolute;
-	left: 30px;
+	${props => props.night ? css`right: 30px;` : css` left: 30px;` }
 	top: 20px;
 	font-family: "VT323", monospace;
 	font-size: 80px;
+	transition: 0.5;
+	color: ${props => props.night ? 'white' : 'black'}
 }
 
 .start {
@@ -124,7 +129,7 @@ export const StyledMain = styled.main<MainProps>`
 		}
 }
 	section {
-		position: absolute;
+		position: fixed;
 		bottom: 0;
 		left: 0;
 		width: 100%;
@@ -145,8 +150,7 @@ export const StyledMain = styled.main<MainProps>`
 		transition: 0.5s;
 
 		.dino {
-			width: auto;
-			height: 100%;
+			width: 200px;
 			position: absolute;
 			left: ${(props) => {
 				if (props.jump) {
@@ -164,7 +168,7 @@ export const StyledMain = styled.main<MainProps>`
 				if (props.goDown) {
 					return "80px";
 				}
-				return "80px";
+				return "66px";
 			}};
 			animation: shake-vertical 2s cubic-bezier(0.455, 0.03, 0.515, 0.955)
 				infinite both;
@@ -194,6 +198,8 @@ export const StyledMain = styled.main<MainProps>`
 
 		@media (max-width: 550px) {
 			.dino {
+			    width: 150px;
+
 				left: ${(props) => {
 					if (props.jump) {
 						return "200px";
@@ -227,7 +233,50 @@ export const StyledMain = styled.main<MainProps>`
 				}};
 			}
 		}
+
+		@media (max-height: 600px) {
+			.dino {
+
+				left: ${(props) => {
+					if (props.jump) {
+						return "200px";
+					}
+					if (props.goDown) {
+						return "200px";
+					}
+					return "20px";
+				}};
+				bottom: ${(props) => {
+					if (props.jump) {
+						return "400px";
+					}
+					if (props.goDown) {
+						return "80px";
+					}
+					return "50px";
+				}};
+			}
+
+			.shadow {
+				bottom: 70px;
+				left: ${(props) => {
+					if (props.jump) {
+						return "250px";
+					}
+					if (props.goDown) {
+						return "250px";
+					}
+					return "40px";
+				}};
+				bottom: 40px;
+			
+		
+			}
+		}	
+
 	}
+
+
 
 	@keyframes incdec {
 		0% {
@@ -280,8 +329,44 @@ export const StyledMain = styled.main<MainProps>`
 		top: 0;
 		right: 0;
 		z-index: 0;
+		transition: 0.5;
+		animation: come-right-sky 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940);
+
+@keyframes come-right-sky {
+	0% {
+		-webkit-transform: translateX(500px);
+		transform: translateX(500px);
+	}
+	100% {
+		-webkit-transform: translateX(0);
+		transform: translateX(0);
+	}
+}
 	}
 
+	.moon {
+		width: 20%;
+		min-width: 250px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		filter: brightness(90%);
+		z-index: 0;
+		transition: 0.5;
+		animation: come-left-sky 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940);
+
+	}
+
+	@keyframes come-left-sky {
+	0% {
+		-webkit-transform: translateX(-500px);
+		transform: translateX(-500px);
+	}
+	100% {
+		-webkit-transform: translateX(0);
+		transform: translateX(0);
+	}
+}
 	.cactus {
 		display: ${(props) => (props.cactusDisplayNone ? "block" : "none")};
 		width: 150px;
@@ -370,10 +455,32 @@ export const StyledMain = styled.main<MainProps>`
 
 	@media (max-width: 700px) {
 		.cactus {
-			right: ${(props) => (props.cactusFade ? "110vw" : "10%")};
+			right: ${(props) => (props.cactusFade ? "110vw" : "5%")};
 		}
 		.cactus_shadow {
-			right: ${(props) => (props.cactusFade ? "110vw" : "10%")};
+			right: ${(props) => (props.cactusFade ? "110vw" : "5%")};
+		}
+	}
+
+	.btns {
+		position: fixed;
+		bottom: 10px;
+		right: 10px;
+		display: flex;
+		gap: 20px;
+		button {
+			cursor: pointer;
+			padding: 10px;
+			background-color: var(--green100);
+			font-family: "VT323", monospace;
+			font-size: 25px;
+			border-radius: 8px;
+			border: 2px solid black;
+			
+
+			&:hover {
+				background-color: red;
+			}
 		}
 	}
 `;

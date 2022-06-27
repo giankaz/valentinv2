@@ -1,24 +1,41 @@
 import styled from "styled-components";
+import skybg from '../../../assets/skybg.jpg'
+import ground from '../../../assets/ground.png'
 
 interface DivProps {
 	bgImage?: string;
 }
 
 export const StyledDiv = styled.div<DivProps>`
-	width: calc((100% - 50px) / 3);
-
+	width: fit-content;
+	padding: 20px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	cursor: pointer;
+	position: relative;
 	gap: 20px;
-	background: url(${(props) => props.bgImage}) 0 0 repeat;
+	background: url(${skybg}) 0 0 repeat;
 	background-size: contain;
 	animation: right-walk 120s infinite;
 	animation-timing-function: linear;
 	border-radius: 10px;
 	border: 2px solid white;
+	z-index: 0;
+	cursor: pointer;
+
+
+	.floor {
+		width: 100%;
+		position: absolute;
+		z-index: 0;
+		bottom: 0;
+		height: 50%;
+		background-image: url(${ground});
+		background-repeat: no-repeat;
+		background-size: cover;
+		border-radius: 8px;
+	}
 
 	@keyframes right-walk {
 		100% {
@@ -30,15 +47,19 @@ export const StyledDiv = styled.div<DivProps>`
 		font-size: 30px;
 		color: black;
 		text-shadow: var(--textShadowWhite);
+		z-index: 1;
 	}
 
 	img {
 		width: 90%;
+		max-width: 300px;
 		height: auto;
 		-webkit-animation: shake-vertical 4s cubic-bezier(0.455, 0.03, 0.515, 0.955)
 			infinite both;
 		animation: shake-vertical 2s cubic-bezier(0.455, 0.03, 0.515, 0.955)
 			infinite both;
+		z-index: 1;
+
 	}
 
 	@-webkit-keyframes shake-vertical {

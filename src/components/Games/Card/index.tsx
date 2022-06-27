@@ -20,6 +20,7 @@ export default function GamesCard({gameTitle, gamePath, bgImage}: GamesCardProps
     <StyledDiv onClick={() => handleGameStart(gamePath)} bgImage={bgImage}>
             <img src={dino} alt='dino' />
             <h1>{gameTitle}</h1>
+            <div className='floor'></div>
     </StyledDiv>
   )
 }
