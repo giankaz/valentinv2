@@ -7,6 +7,7 @@ import sun from '../../../assets/sun.gif'
 import ground from "../../../assets/ground.png";
 import { useHistory } from "react-router-dom";
 import LoadingComponent from "../../../components/Global/Loading";
+import {GiReturnArrow, GiResonance} from 'react-icons/gi'
 
 
 export default function DinoMath() {
@@ -171,7 +172,14 @@ export default function DinoMath() {
 				className={night? 'moon' : 'sun'}
 			/>
 
-			<div className="score">{score}</div>
+			<div className="score">
+				{score}
+			
+			<div className="btns">
+				<button onClick={() => history.push('/jogos')}><GiReturnArrow/> Voltar </button>
+				<button onClick={() => document.location.reload()}><GiResonance/> Reiniciar</button>
+			</div>
+			</div>
 
 			{!gameStarted && (
 				<div className="start">
@@ -182,10 +190,7 @@ export default function DinoMath() {
 			)}
 			
 
-			<div className="btns">
-				<button onClick={() => history.push('/jogos')}>Voltar</button>
-				<button onClick={() => document.location.reload()}>Reiniciar</button>
-			</div>
+		
 
 			<div  className="ground"></div>
 

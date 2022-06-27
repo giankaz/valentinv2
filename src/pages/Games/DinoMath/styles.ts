@@ -27,7 +27,8 @@ export const StyledMain = styled.main<MainProps>`
 	background-size: contain;
 	animation: right-walk 40s infinite;
 	animation-timing-function: linear;
-	transition: 2.5s;
+	transition: 0.2s;
+	
 
 	filter: brightness(${props => props.night ? '80%' : '100%'});
 	@keyframes right-walk {
@@ -87,11 +88,15 @@ export const StyledMain = styled.main<MainProps>`
 	}
 .score {
 	position: absolute;
-	${props => props.night ? css`right: 30px;` : css` left: 30px;` }
-	top: 20px;
+	${props => props.night ? css`right: 20px;` : css` left: 20px;` }
+	top: 10px;
+	
 	font-family: "VT323", monospace;
-	font-size: 80px;
+	font-size: 60px;
 	transition: 0.5;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
 	color: ${props => props.night ? 'white' : 'black'}
 }
 
@@ -138,28 +143,6 @@ export const StyledMain = styled.main<MainProps>`
 		width: 100%;
 		height: 200px;
 		transition: 0.5s;
-		.ground {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background: url(${ground}) 0 0 repeat;
-			background-size: cover;
-			z-index: 100;
-		   background-position: top;
-			animation: right-walk 40s infinite;
-	    	animation-play-state: ${(props) => {
-			if (!props.gameStarted) {
-					return "paused"
-			}
-
-			if (props.entrance) {
-				return "paused"
-			}
-		}};
-	
-		}
 
 		.dino {
 			width: 200px;
@@ -454,27 +437,6 @@ export const StyledMain = styled.main<MainProps>`
 		}
 	}
 
-	.btns {
-		position: fixed;
-		bottom: 10px;
-		right: 10px;
-		display: flex;
-		gap: 20px;
-		button {
-			cursor: pointer;
-			padding: 10px;
-			background-color: var(--green100);
-			font-family: "VT323", monospace;
-			font-size: 25px;
-			border-radius: 8px;
-			border: 2px solid black;
-			
-
-			&:hover {
-				background-color: red;
-			}
-		}
-	}
 
 
 	.ground {
@@ -505,4 +467,33 @@ export const StyledMain = styled.main<MainProps>`
 			background-position: -900600px;
 		}
 	}
+
+
+	.btns {
+	
+
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		button {
+	
+			cursor: pointer;
+			padding: 5px;
+			background-color: var(--green100);
+			font-family: "VT323", monospace;
+			font-size: 20px;
+			border-radius: 8px;
+			border: 2px solid black;
+			display: flex;
+			gap: 5px;
+			align-items: center;
+			justify-content: center;
+			
+
+			&:hover {
+				background-color: red;
+			}
+		}
+	}
+
 `;
