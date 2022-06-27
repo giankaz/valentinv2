@@ -121,7 +121,7 @@ export default function DinoMath() {
 
 			setTimeout(() => {
 				handleGameStart()
-			}, 2000)
+			}, 3000)
 		}
 	}, [userAnswer]);
 
