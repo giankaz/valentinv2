@@ -2,29 +2,26 @@ import dino from "../../../assets/mathdino.png";
 import cactus from "../../../assets/cactus.png";
 import { StyledMain } from "./styles";
 import { useEffect, useState } from "react";
-import moon from '../../../assets/moon.webp'
-import sun from '../../../assets/sun.gif'
+import moon from "../../../assets/moon.webp";
+import sun from "../../../assets/sun.gif";
 import ground from "../../../assets/ground.png";
 import { useHistory } from "react-router-dom";
 import LoadingComponent from "../../../components/Global/Loading";
-import {GiReturnArrow, GiResonance} from 'react-icons/gi'
-
+import { GiReturnArrow, GiResonance } from "react-icons/gi";
 
 export default function DinoMath() {
 	const [jump, setJump] = useState(false);
 	const [goDown, setGoDown] = useState(false);
 
+	const [entrance, setEntrance] = useState(false);
+	const [cactusFade, setCactusFade] = useState(false);
+	const [cactusDisplayNone, setCactusDisplayNone] = useState(false);
 
-	const [entrance, setEntrance] = useState(false)
-	const [cactusFade, setCactusFade] = useState(false)
-	const [cactusDisplayNone, setCactusDisplayNone] = useState(false)
-
-	const [night, setNight] = useState(true)
-
+	const [night, setNight] = useState(true);
 
 	const [gameStarted, setGameStarted] = useState(false);
 	const [showMessage, setShowMessage] = useState(false);
-	const [loading, setLoading] = useState(true)
+	const [loading, setLoading] = useState(true);
 
 	const [stopGround, setStopGround] = useState(false);
 
@@ -38,7 +35,7 @@ export default function DinoMath() {
 	const [userAnswer, setUserAnswer] = useState<any>("");
 	const [score, setScore] = useState(0);
 
-	const history = useHistory()
+	const history = useHistory();
 
 	const getRandomInt = (min: number, max: number) => {
 		min = Math.ceil(min);
@@ -55,42 +52,50 @@ export default function DinoMath() {
 		setNumber2(newNumber2);
 		setOperator(newOperator);
 
-		setGameStarted(true)
-		setEntrance(false)
-		
-		setTimeout(() => {
-			setEntrance(true)
-			setShowMessage(true);
-			setCactusDisplayNone(true)
-			setStopGround(true);
-		
+		setGameStarted(true);
+		setEntrance(false);
 
-		}, 2000)
+		setTimeout(() => {
+			setEntrance(true);
+			setShowMessage(true);
+			setCactusDisplayNone(true);
+			setStopGround(true);
+		}, 2000);
 	};
 
 	useEffect(() => {
-
-		setTimeout(() => setNight(true), 1000)
-		setTimeout(() => setNight(false), 2000)
-		setTimeout(() => setLoading(false), 2500)
-	    
-	}, [])
+		setTimeout(() => setNight(true), 1000);
+		setTimeout(() => setNight(false), 2000);
+		setTimeout(() => setLoading(false), 2500);
+	}, []);
 
 	useEffect(() => {
 		if (operator === 1) {
-			const newAnswer = number1 > number2 ? Math.round(number1 + number2) : Math.round(number2 + number1);
+			const newAnswer =
+				number1 > number2
+					? Math.round(number1 + number2)
+					: Math.round(number2 + number1);
 			setAnswer(newAnswer);
 			setShownOperator("+");
 		} else if (operator === 2) {
-			const newAnswer = number1 > number2 ? Math.round(number1 - number2) : Math.round(number2 - number1);
+			const newAnswer =
+				number1 > number2
+					? Math.round(number1 - number2)
+					: Math.round(number2 - number1);
 			setAnswer(newAnswer);
 			setShownOperator("-");
 		} else if (operator === 3) {
-			const newAnswer = number1 > number2 ? Math.round(number1 / number2) : Math.round(number2 / number1);
+			const newAnswer =
+				number1 > number2
+					? Math.round(number1 / number2)
+					: Math.round(number2 / number1);
 			setAnswer(newAnswer);
 			setShownOperator("/");
 		} else if (operator === 4) {
-			const newAnswer = number1 > number2 ? Math.round(number1 * number2) : Math.round(number2 * number1);
+			const newAnswer =
+				number1 > number2
+					? Math.round(number1 * number2)
+					: Math.round(number2 * number1);
 			setAnswer(newAnswer);
 			setShownOperator("X");
 		}
@@ -100,10 +105,9 @@ export default function DinoMath() {
 		if (userAnswer == answer) {
 			setScore(score + 1);
 			setJump(true);
-	
-			setEntrance(true)
-			setCactusFade(true)
-		
+
+			setEntrance(true);
+			setCactusFade(true);
 
 			setTimeout(() => {
 				setJump(false);
@@ -114,27 +118,27 @@ export default function DinoMath() {
 
 			setTimeout(() => {
 				setGoDown(false);
-				setEntrance(false)
-		    	setCactusFade(false)
+				setEntrance(false);
+				setCactusFade(false);
 
-				setCactusDisplayNone(false)
+				setCactusDisplayNone(false);
 			}, 1300);
 
 			setTimeout(() => {
-				handleGameStart()
-			}, 3000)
+				handleGameStart();
+			}, 3000);
 		}
 	}, [userAnswer]);
 
 	useEffect(() => {
 		if (score % 4 === 0) {
-			setNight(!night)
+			setNight(!night);
 		}
-	} , [score])
+	}, [score]);
 
 	return (
 		<StyledMain
-		    gameStarted={gameStarted}
+			gameStarted={gameStarted}
 			jump={jump}
 			goDown={goDown}
 			entrance={entrance}
@@ -144,7 +148,6 @@ export default function DinoMath() {
 			stopGround={stopGround}
 		>
 			<section>
-
 				<img src={dino} alt="" className="dino" />
 				<div className="shadow"></div>
 				<img src={cactus} alt="cactus" className="cactus" />
@@ -154,7 +157,10 @@ export default function DinoMath() {
 			{showMessage && (
 				<div className="msg_box">
 					<p>
-						{number1 > number2 ? `${number1} ${shownOperator} ${number2}` : `${number2} ${shownOperator} ${number1}`} = ?
+						{number1 > number2
+							? `${number1} ${shownOperator} ${number2}`
+							: `${number2} ${shownOperator} ${number1}`}{" "}
+						= ?
 					</p>
 
 					<input
@@ -169,18 +175,23 @@ export default function DinoMath() {
 			<img
 				src={night ? moon : sun}
 				alt="sun"
-				className={night? 'moon' : 'sun'}
+				className={night ? "moon" : "sun"}
 			/>
 
-			<div className="score">
-				{score}
-			
-			<div className="btns">
-				<button onClick={() => history.push('/jogos')}><GiReturnArrow/> Voltar </button>
-				<button onClick={() => document.location.reload()}><GiResonance/> Reiniciar</button>
-			</div>
-			</div>
+			{gameStarted && (
+				<div className="score">
+					{score}
 
+					<div className="btns">
+						<button onClick={() => history.push("/jogos")}>
+							<GiReturnArrow /> Voltar{" "}
+						</button>
+						<button onClick={() => document.location.reload()}>
+							<GiResonance /> Reiniciar
+						</button>
+					</div>
+				</div>
+			)}
 			{!gameStarted && (
 				<div className="start">
 					<p>Resolva os cálculos para </p>
@@ -188,16 +199,10 @@ export default function DinoMath() {
 					<button onClick={handleGameStart}>Iniciar!</button>
 				</div>
 			)}
-			
 
-		
+			<div className="ground"></div>
 
-			<div  className="ground"></div>
-
-
-		 	{loading && 
-			<LoadingComponent/>
-			} 
+			{loading && <LoadingComponent />}
 		</StyledMain>
 	);
 }
