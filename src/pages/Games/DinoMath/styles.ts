@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import msgbox from "../../../assets/messagebox.png";
 import nightsky from '../../../assets/nightskybg.jpg'
-import skybg from '../../../assets/skybg.jpg'
+import skybg from '../../../assets/skybg.webp'
 import ground from '../../../assets/newground.png'
 
 interface MainProps {
@@ -22,15 +22,25 @@ export const StyledMain = styled.main<MainProps>`
 	left: 0;
 	width: 100%;
 	height: 100vh;
-	background: url(${props => props.night ? nightsky :skybg})
-		0 0 repeat;
-	background-size: ${props => props.night ? 'contain' : 'cover'};
-	animation: right-walk 40s infinite;
-	animation-timing-function: linear;
-	transition: 1.2s;
+
 	
 
-	filter: brightness(${props => props.night ? '80%' : '100%'});
+	filter: brightness(${props => props.night ? '70%' : '100%'});
+
+	.background {
+			position: fixed;
+			width: 100%;
+		height: calc(100vh + 200px);
+		background: url(${props => props.night ? nightsky :skybg})
+			0 0 repeat;
+		background-size: contain;
+		animation: right-walk 40s infinite;
+		animation-timing-function: linear;
+		transition: 1.2s;
+		z-index: -200;
+		filter: brightness(${props => props.night ? '100%' : '90%'});
+	}
+
 	@keyframes right-walk {
 		100% {
 			background-position: -6000px;
@@ -458,6 +468,7 @@ export const StyledMain = styled.main<MainProps>`
 			background: url(${ground}) 0 0 repeat;
 			background-size: 908px 140px;
 			z-index: -1;
+			transition: 0.5s;
 
 			animation: right-walk-ground 1500s infinite;
 	    	animation-play-state: ${(props) => {
@@ -511,5 +522,13 @@ export const StyledMain = styled.main<MainProps>`
 			cursor: pointer;
 		}
 	}
+@media (max-height: 450px) {
+	section {
+		bottom: -100px;
+	}
 
+	.ground {
+		bottom: -100px;
+	}
+}
 `;

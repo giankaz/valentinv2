@@ -176,6 +176,7 @@ export default function DinoMath() {
 			stopGround={stopGround}
 			
 		>
+			<div className='background'></div>
 			<section>
 				<img src={dino} alt="" className="dino" />
 				<div className="shadow"></div>

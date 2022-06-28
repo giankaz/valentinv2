@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import skybg from '../../../assets/skybg.jpg'
+import skybg from '../../../assets/skybg.webp'
 import ground from '../../../assets/newground.png'
 
 interface DivProps {
