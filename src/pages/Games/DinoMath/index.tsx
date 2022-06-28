@@ -33,11 +33,15 @@ export default function DinoMath() {
 	const [operator, setOperator] = useState(1);
 	const [shownOperator, setShownOperator] = useState("+");
 	const [answer, setAnswer] = useState<any>(null);
-
+	
 	const [userAnswer, setUserAnswer] = useState<any>("");
 	const [score, setScore] = useState(0);
 	const [audioState, setAudioState] = useState(true);
 
+	const [disableInput, setDisableInput] = useState(false)
+	const [showAnswer, setShowAnswer] = useState(false)
+
+	
 	const history = useHistory();
 
 	const startAudio = () => {
@@ -55,6 +59,7 @@ export default function DinoMath() {
 	};
 
 	const handleGameStart = () => {
+		setDisableInput(false)
 		const newNumber1 = getRandomInt(1, 10);
 		const newNumber2 = getRandomInt(1, 10);
 		const newOperator = getRandomInt(1, 3);
@@ -118,27 +123,33 @@ export default function DinoMath() {
 	}, [number1, number2, operator]);
 
 	useEffect(() => {
-		if (userAnswer == answer) {
+		setUserAnswer(userAnswer.slice(0,3))
+		if (Number(userAnswer) === answer) {
+			setShowAnswer(true)
+			setDisableInput(true)
 			setScore(score + 1);
-			setJump(true);
+			setTimeout(() => {
+				setShowMessage(false);
+				setJump(true);
 
-			setEntrance(true);
-			setCactusFade(true);
+				setEntrance(true);
+				setCactusFade(true);
+			}, 600)
 
 			setTimeout(() => {
 				setJump(false);
 				setGoDown(true);
 				setUserAnswer("");
-				setShowMessage(false);
-			}, 600);
+			}, 1200);
 
 			setTimeout(() => {
 				setGoDown(false);
 				setEntrance(false);
 				setCactusFade(false);
+				setShowAnswer(false)
 
 				setCactusDisplayNone(false);
-			}, 1300);
+			}, 2500);
 
 			setTimeout(() => {
 				handleGameStart();
@@ -148,7 +159,7 @@ export default function DinoMath() {
 
 	useEffect(() => {
 		if (score % 4 === 0) {
-			setNight(!night);
+			setTimeout(() => setNight(!night), 1500)
 		}
 	}, [score]);
 
@@ -163,6 +174,7 @@ export default function DinoMath() {
 			cactusFade={cactusFade}
 			night={night}
 			stopGround={stopGround}
+			
 		>
 			<section>
 				<img src={dino} alt="" className="dino" />
@@ -171,23 +183,26 @@ export default function DinoMath() {
 				<div className="cactus_shadow"></div>
 			</section>
 
-			{showMessage && (
-				<div className="msg_box">
-					<p>
-						{number1 > number2
-							? `${number1} ${shownOperator} ${number2}`
-							: `${number2} ${shownOperator} ${number1}`}{" "}
-						= ?
-					</p>
+			{showMessage && 
+			<div className="msg_box">
+				<p>
+					{number1 > number2
+						? `${number1} ${shownOperator} ${number2}`
+						: `${number2} ${shownOperator} ${number1}`}{" "}
+					= {showAnswer ? answer : '?'}
+				</p>
 
-					<input
-						type="number"
-						autoFocus
-						value={userAnswer}
-						onChange={(e) => setUserAnswer(e.target.value)}
-					/>
+				<input
+					type="number"
+					autoFocus
+					disabled={disableInput}
+					value={userAnswer}
+					onChange={(e) => setUserAnswer(e.target.value)}
+				/>
 				</div>
-			)}
+			}
+
+		
 
 			<img
 				src={night ? moon : sun}

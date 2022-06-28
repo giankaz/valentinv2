@@ -24,10 +24,10 @@ export const StyledMain = styled.main<MainProps>`
 	height: 100vh;
 	background: url(${props => props.night ? nightsky :skybg})
 		0 0 repeat;
-	background-size: contain;
+	background-size: ${props => props.night ? 'contain' : 'cover'};
 	animation: right-walk 40s infinite;
 	animation-timing-function: linear;
-	transition: 2.2s;
+	transition: 1.2s;
 	
 
 	filter: brightness(${props => props.night ? '80%' : '100%'});
@@ -98,6 +98,16 @@ export const StyledMain = styled.main<MainProps>`
 	flex-direction: column;
 	gap: 20px;
 	color: ${props => props.night ? 'white' : 'black'}
+}
+
+.right_answer {
+	position: fixed;
+	z-index: 300;
+	font-size: 80px;
+	top: 30%;
+	left: 50%;
+	transform: translate(-50% -50%);
+	text-shadow: var(--textShadowWhite);
 }
 
 .start {
