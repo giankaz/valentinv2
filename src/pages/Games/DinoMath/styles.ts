@@ -522,7 +522,7 @@ export const StyledMain = styled.main<MainProps>`
 			cursor: pointer;
 		}
 	}
-@media (max-height: 450px) {
+@media (max-height: 450px) and (max-width: 600px){
 	section {
 		bottom: -100px;
 	}
