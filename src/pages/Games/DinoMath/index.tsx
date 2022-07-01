@@ -8,8 +8,8 @@ import { useHistory } from "react-router-dom";
 import LoadingComponent from "../../../components/Global/Loading";
 import { GiReturnArrow, GiResonance } from "react-icons/gi";
 import { FaPlay, FaPause } from "react-icons/fa";
+import { TbMusicOff, TbMusic } from "react-icons/tb";
 import ReactAudioPlayer from "react-audio-player";
-
 
 export default function DinoMath() {
 	const [jump, setJump] = useState(false);
@@ -33,15 +33,14 @@ export default function DinoMath() {
 	const [operator, setOperator] = useState(1);
 	const [shownOperator, setShownOperator] = useState("+");
 	const [answer, setAnswer] = useState<any>(null);
-	
+
 	const [userAnswer, setUserAnswer] = useState<any>("");
 	const [score, setScore] = useState(0);
 	const [audioState, setAudioState] = useState(true);
 
-	const [disableInput, setDisableInput] = useState(false)
-	const [showAnswer, setShowAnswer] = useState(false)
+	const [disableInput, setDisableInput] = useState(false);
+	const [showAnswer, setShowAnswer] = useState(false);
 
-	
 	const history = useHistory();
 
 	const startAudio = () => {
@@ -59,7 +58,7 @@ export default function DinoMath() {
 	};
 
 	const handleGameStart = () => {
-		setDisableInput(false)
+		setDisableInput(false);
 		const newNumber1 = getRandomInt(1, 10);
 		const newNumber2 = getRandomInt(1, 10);
 		const newOperator = getRandomInt(1, 3);
@@ -80,7 +79,7 @@ export default function DinoMath() {
 	};
 
 	useEffect(() => {
-		document.title = 'Site do Valentin | Corrida da Matemática'
+		document.title = "Site do Valentin | Corrida da Matemática";
 		setTimeout(() => setNight(true), 1000);
 		setTimeout(() => {
 			setNight(false);
@@ -123,10 +122,10 @@ export default function DinoMath() {
 	}, [number1, number2, operator]);
 
 	useEffect(() => {
-		setUserAnswer(userAnswer.slice(0,3))
+		setUserAnswer(userAnswer.slice(0, 3));
 		if (Number(userAnswer) === answer) {
-			setShowAnswer(true)
-			setDisableInput(true)
+			setShowAnswer(true);
+			setDisableInput(true);
 			setScore(score + 1);
 			setTimeout(() => {
 				setShowMessage(false);
@@ -134,7 +133,7 @@ export default function DinoMath() {
 
 				setEntrance(true);
 				setCactusFade(true);
-			}, 600)
+			}, 600);
 
 			setTimeout(() => {
 				setJump(false);
@@ -146,7 +145,7 @@ export default function DinoMath() {
 				setGoDown(false);
 				setEntrance(false);
 				setCactusFade(false);
-				setShowAnswer(false)
+				setShowAnswer(false);
 
 				setCactusDisplayNone(false);
 			}, 2500);
@@ -159,10 +158,9 @@ export default function DinoMath() {
 
 	useEffect(() => {
 		if (score % 4 === 0) {
-			setTimeout(() => setNight(!night), 1500)
+			setTimeout(() => setNight(!night), 1500);
 		}
 	}, [score]);
-
 
 	return (
 		<StyledMain
@@ -174,9 +172,8 @@ export default function DinoMath() {
 			cactusFade={cactusFade}
 			night={night}
 			stopGround={stopGround}
-			
 		>
-			<div className='background'></div>
+			<div className="background"></div>
 			<section>
 				<img src={dino} alt="" className="dino" />
 				<div className="shadow"></div>
@@ -184,26 +181,24 @@ export default function DinoMath() {
 				<div className="cactus_shadow"></div>
 			</section>
 
-			{showMessage && 
-			<div className="msg_box">
-				<p>
-					{number1 > number2
-						? `${number1} ${shownOperator} ${number2}`
-						: `${number2} ${shownOperator} ${number1}`}{" "}
-					= {showAnswer ? answer : '?'}
-				</p>
+			{showMessage && (
+				<div className="msg_box">
+					<p>
+						{number1 > number2
+							? `${number1} ${shownOperator} ${number2}`
+							: `${number2} ${shownOperator} ${number1}`}{" "}
+						= {showAnswer ? answer : "?"}
+					</p>
 
-				<input
-					type="number"
-					autoFocus
-					disabled={disableInput}
-					value={userAnswer}
-					onChange={(e) => setUserAnswer(e.target.value)}
-				/>
+					<input
+						type="number"
+						autoFocus
+						disabled={disableInput}
+						value={userAnswer}
+						onChange={(e) => setUserAnswer(e.target.value)}
+					/>
 				</div>
-			}
-
-		
+			)}
 
 			<img
 				src={night ? moon : sun}
@@ -211,23 +206,26 @@ export default function DinoMath() {
 				className={night ? "moon" : "sun"}
 			/>
 
-			{gameStarted && (
-				<div className="score">
-					{score}
+			<div className="score">
+				{score}
 
-					<div className="btns">
-						<button onClick={() => history.push("/jogos")}>
-							<GiReturnArrow /> Voltar{" "}
-						</button>
-						<button onClick={() => document.location.reload()}>
-							<GiResonance /> Reiniciar
-						</button>
-						<button onClick={() => (audioState ? stopAudio() : startAudio())}>
-							{audioState ? <FaPause size={20} /> : <FaPlay size={20} />} Música
-						</button>
-					</div>
+				<div className="btns">
+					{gameStarted && (
+						<>
+							<button onClick={() => history.push("/jogos")}>
+								<GiReturnArrow /> Voltar{" "}
+							</button>
+							<button onClick={() => document.location.reload()}>
+								<GiResonance /> Reiniciar
+							</button>
+						</>
+					)}
+					<button onClick={() => (audioState ? stopAudio() : startAudio())}>
+						{audioState ? <TbMusic /> : <TbMusicOff />} Música
+					</button>
 				</div>
-			)}
+			</div>
+
 			{!gameStarted && (
 				<div className="start">
 					<p>Resolva os cálculos para </p>
@@ -240,31 +238,26 @@ export default function DinoMath() {
 
 			{loading && <LoadingComponent />}
 
-			
-			{gameStarted &&
-			<ReactAudioPlayer 
-			src="/soundtrack.mp3"
-			volume={0.4}
-			autoPlay
-			muted={!audioState}
-			preload='auto'
-			loop
-			/> 
-			
-			}
+			{gameStarted && (
+				<ReactAudioPlayer
+					src="/soundtrack.mp3"
+					volume={0.4}
+					autoPlay
+					muted={!audioState}
+					preload="auto"
+					loop
+				/>
+			)}
 
-			{!gameStarted &&
-				<ReactAudioPlayer 
-				src="/soundtrack.mp3"
-				volume={0.4}
-				autoPlay
-				muted={!audioState}
-				preload='auto'
-				/> 
-			}
-
-
-			
+			{!gameStarted && (
+				<ReactAudioPlayer
+					src="/soundtrack.mp3"
+					volume={0.4}
+					autoPlay
+					muted={!audioState}
+					preload="auto"
+				/>
+			)}
 		</StyledMain>
 	);
 }
