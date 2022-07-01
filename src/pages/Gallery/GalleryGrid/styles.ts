@@ -14,6 +14,37 @@ export const StyledMain = styled.main`
 		font-size: 20px;
 	}
 
+	.my-masonry-grid {
+		display: -webkit-box; 
+		display: -ms-flexbox; 
+		display: flex;
+
+		margin-left: -10px; 
+		width: 100%;
+		max-width: 1050px;
+	}
+	.my-masonry-grid_column {
+		padding-left: 10px; 
+		background-clip: padding-box;
+	}
+
+	.my-masonry-grid_column > div {
+		margin-bottom: 10px;
+
+	}
+
+	.my-masonry-grid_column img {
+		max-width: 100%;
+		height: auto;
+		border:2px solid transparent;
+		cursor: pointer;
+	}
+
+	.my-masonry-grid_column img:hover {
+		border: 2px solid white;
+
+	}
+
 	section {
 		display: flex;
 		position: fixed;
@@ -58,40 +89,6 @@ export const StyledMain = styled.main`
 
 	.dots {
 		width: 100px;
-	}
-`;
-
-export const StyledUl = styled.ul`
-	width: 100%;
-	max-width: 1000px;
-	display: flex;
-	flex-flow: row wrap;
-	gap: 10px;
-
-	li {
-		height: 45vh;
-		flex-grow: 1;
-	}
-
-	@media (max-width: 600px) {
-		li {
-
-			height: 20vh;
-		}
-	}
-
-	img {
-		max-height: 100%;
-		min-width: 100%;
-		object-fit: cover;
-		vertical-align: bottom;
-
-		border: 2px solid transparent;
-		cursor: pointer;
-	}
-
-	img:hover {
-		border: 2px solid white;
 	}
 `;
 
@@ -143,7 +140,7 @@ export const StyledModal = styled.div`
 		width: 60px;
 		height: 60px;
 		cursor: pointer;
-		
+
 		right: 0px;
 		top: 0;
 		z-index: 10;

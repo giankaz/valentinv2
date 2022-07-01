@@ -7,7 +7,8 @@ import { useHistory, useParams } from "react-router-dom";
 import ScrollToTop from "react-scroll-to-top";
 import { defineSwipe, Swipeable } from "react-touch";
 import LoadingComponent from "../../../components/Global/Loading";
-import { StyledArrow, StyledMain, StyledModal, StyledUl } from "./styles";
+import { StyledArrow, StyledMain, StyledModal } from "./styles";
+import Masonry from "react-masonry-css";
 
 import { initializeApp } from "firebase/app";
 import { getDownloadURL, getStorage, ref, list} from "firebase/storage";
@@ -172,10 +173,14 @@ export default function GalleryGrid() {
 
 	return (
 		<StyledMain>
-			<StyledUl>
+			<Masonry
+			breakpointCols={{default: 4, 1000: 3, 600: 2}}
+			className="my-masonry-grid"
+			columnClassName="my-masonry-grid_column"
+			>
 				{dataBase.map((item: string, i: number) => {
 					return (
-						<li key={i}>
+						<div key={i}>
 							<img
 							onLoad={() => {
 								if (i === dataBase.length - 1) {
@@ -186,10 +191,10 @@ export default function GalleryGrid() {
 								src={item}
 								onClick={() => openImg(item)}
 							/>
-						</li>
+						</div>
 					);
 				})}
-			</StyledUl>
+			</Masonry>
 
 			{currentImg === "" && (
 				<section>
